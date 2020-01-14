@@ -24,3 +24,11 @@ body {
 	background-repeat: no-repeat;
 	height: 400px;
 }
+
+.sign_in {
+	padding-top: 200px;
+}
+
+.book_image {
+	width: 180px;
+}
