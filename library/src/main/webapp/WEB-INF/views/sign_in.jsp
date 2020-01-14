@@ -31,45 +31,11 @@
 						<a class="nav-link" href="/library/subjects">Subjects</a>
 					</li>
 				</ul>
-				<div class="navbar-nav">
-					<div class="nav-item"><a class="nav-link" href="/library/sign_in">Sign in</a></div>
-				</div>
-				<form class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				</form>
 			</div>
 		</nav>
 		
 		<main role="main">
-			<!-- Main jumbotron for a primary marketing message or call to action -->
-			<div class="jumbotron top_image">
-				<div class="container">
-					<h1 class="display-3">Beliveau Library</h1>
-				</div>
-			</div>
 			
-			<div class="container">
-				<div class="row">
-					<div class="col-3">
-						<a href=""><img src="/library/resources/img/book.jpeg" alt="" /></a>
-						<h2>Heading</h2>
-					</div>
-					<div class="col-3">
-						<a href=""><img src="/library/resources/img/book.jpeg" alt="" /></a>
-						<h2>Heading</h2>
-					</div>
-					<div class="col-3">
-						<a href=""><img src="/library/resources/img/book.jpeg" alt="" /></a>
-						<h2>Heading</h2>
-					</div>
-					<div class="col-3">
-						<a href=""><img src="/library/resources/img/book.jpeg" alt="" /></a>
-						<h2>Heading</h2>
-					</div>
-				</div>
-				<hr>
-			</div> <!-- /container -->
 		</main>
 
 		<footer class="container">

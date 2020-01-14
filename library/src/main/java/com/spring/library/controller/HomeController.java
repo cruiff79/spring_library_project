@@ -26,14 +26,22 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
 		return "index";
+	}
+	
+	@RequestMapping(value = "/books", method = RequestMethod.GET)
+	public String book_list(Model model) {
+		return "books";
+	}
+	
+	@RequestMapping(value = "/subjects", method = RequestMethod.GET)
+	public String subject_list(Model model) {
+		return "subjects";
+	}
+	
+	@RequestMapping(value = "/sign_in", method = RequestMethod.GET)
+	public String sign_in(Model model) {
+		return "sign_in";
 	}
 	
 }

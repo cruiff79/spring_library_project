@@ -42,34 +42,7 @@
 		</nav>
 		
 		<main role="main">
-			<!-- Main jumbotron for a primary marketing message or call to action -->
-			<div class="jumbotron top_image">
-				<div class="container">
-					<h1 class="display-3">Beliveau Library</h1>
-				</div>
-			</div>
 			
-			<div class="container">
-				<div class="row">
-					<div class="col-3">
-						<a href=""><img src="/library/resources/img/book.jpeg" alt="" /></a>
-						<h2>Heading</h2>
-					</div>
-					<div class="col-3">
-						<a href=""><img src="/library/resources/img/book.jpeg" alt="" /></a>
-						<h2>Heading</h2>
-					</div>
-					<div class="col-3">
-						<a href=""><img src="/library/resources/img/book.jpeg" alt="" /></a>
-						<h2>Heading</h2>
-					</div>
-					<div class="col-3">
-						<a href=""><img src="/library/resources/img/book.jpeg" alt="" /></a>
-						<h2>Heading</h2>
-					</div>
-				</div>
-				<hr>
-			</div> <!-- /container -->
 		</main>
 
 		<footer class="container">
