@@ -30,6 +30,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/library/subjects">Subjects</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/library/rental">Rental</a>
+					</li>
 				</ul>
 				<div class="navbar-nav">
 					<div class="nav-item"><a class="nav-link" href="/library/sign_in">Sign in</a></div>
@@ -52,27 +55,27 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-2">
-						<a href=""><img src="/library/resources/img/book.jpeg" alt="" class="book_image" /></a>
+						<a href=""><img src="https://books.google.com/books/content?id=PXa2bby0oQ0C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="" class="book_image" /></a>
 						<h2>Heading</h2>
 					</div>
 					<div class="col-2">
-						<a href=""><img src="/library/resources/img/book.jpeg" alt="" class="book_image" /></a>
+						<a href=""><img src="http://books.google.com/books/content?id=UAYvDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="" class="book_image" /></a>
 						<h2>Heading</h2>
 					</div>
 					<div class="col-2">
-						<a href=""><img src="/library/resources/img/book.jpeg" alt="" class="book_image" /></a>
+						<a href=""><img src="http://books.google.com/books/content?id=OW_6BWEQAo4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="" class="book_image" /></a>
 						<h2>Heading</h2>
 					</div>
 					<div class="col-2">
-						<a href=""><img src="/library/resources/img/book.jpeg" alt="" class="book_image" /></a>
+						<a href=""><img src="http://books.google.com/books/content?id=CxY3lNQTATQC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="" class="book_image" /></a>
 						<h2>Heading</h2>
 					</div>
 					<div class="col-2">
-						<a href=""><img src="/library/resources/img/book.jpeg" alt="" class="book_image" /></a>
+						<a href=""><img src="http://books.google.com/books/content?id=XiWGDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="" class="book_image" /></a>
 						<h2>Heading</h2>
 					</div>
 					<div class="col-2">
-						<a href=""><img src="/library/resources/img/book.jpeg" alt="" class="book_image" /></a>
+						<a href=""><img src="http://books.google.com/books/content?id=vJGlu9t9LNYC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="" class="book_image" /></a>
 						<h2>Heading</h2>
 					</div>
 				</div>
