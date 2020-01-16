@@ -3,11 +3,13 @@ package com.spring.library.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.spring.library.dao.BookDAO;
 import com.spring.library.dto.BookDTO;
 
+@Service
 public class BookListService implements BookService {
 	
 	@Autowired
