@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!doctype html>
 <html lang="en">
@@ -54,6 +55,13 @@
 			
 			<div class="container">
 				<div class="row">
+					<c:forEach var="item" items="${list}">
+						<div class="col-2">
+							<a href=""><img src="${item.image}" alt="" class="book_image" /></a>
+							<h3>${item.title}</h3>
+						</div>
+					</c:forEach>
+					<!-- 
 					<div class="col-2">
 						<a href=""><img src="https://books.google.com/books/content?id=PXa2bby0oQ0C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="" class="book_image" /></a>
 						<h2>Heading</h2>
@@ -78,6 +86,7 @@
 						<a href=""><img src="http://books.google.com/books/content?id=vJGlu9t9LNYC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="" class="book_image" /></a>
 						<h2>Heading</h2>
 					</div>
+					 -->
 				</div>
 			</div> <!-- /container -->
 		</main>
