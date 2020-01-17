@@ -1,9 +1,13 @@
 package com.spring.library.service;
 
+import java.util.List;
+
 import org.springframework.ui.Model;
+
+import com.spring.library.dto.BookDTO;
 
 public interface BookService {
 	
-	void execute(Model model);
+	List<BookDTO> listBook();
 
 }
