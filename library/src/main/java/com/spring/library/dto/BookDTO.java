@@ -2,6 +2,7 @@ package com.spring.library.dto;
 
 public class BookDTO {
 
+	int book_id;
 	String title;
 	String author;
 	String isbn;
@@ -11,6 +12,12 @@ public class BookDTO {
 	String description;
 	String image;
 	
+	public int getBook_id() {
+		return book_id;
+	}
+	public void setBook_id(int book_id) {
+		this.book_id = book_id;
+	}
 	public String getTitle() {
 		return title;
 	}
