@@ -2,7 +2,7 @@ package com.spring.library.controller;
 
 import java.util.List;
 
-import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.library.dto.BookDTO;
-import com.spring.library.service.BookListService;
 import com.spring.library.service.BookService;
 
 /**
@@ -28,14 +27,24 @@ public class HomeController {
 	BookService bookService;
 	
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * index page
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		List<BookDTO> list = bookService.listBook();
-		model.addAttribute("list", list);
+		List<BookDTO> bookList = bookService.listBook();
+		model.addAttribute("list", bookList);
 		
 		return "index";
+	}
+	
+	// book info
+	@RequestMapping(value = "/bookInfo", method = RequestMethod.GET)
+	public String book_info(HttpServletRequest request, Model model) {
+		int book_id = Integer.parseInt(request.getParameter("book_id"));
+		BookDTO bookInfo = bookService.bookInfo(book_id);
+		model.addAttribute("bookInfo", bookInfo);
+		
+		return "bookInfo";
 	}
 	
 	@RequestMapping(value = "/books", method = RequestMethod.GET)

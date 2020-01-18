@@ -8,5 +8,9 @@
 	<select id="listBook" resultType="com.spring.library.dto.BookDTO">
 		SELECT * FROM BOOK
 	</select>
+	
+	<select id="bookInfo" resultType="com.spring.library.dto.BookDTO">
+		SELECT * FROM BOOK WHERE BOOK_ID = #{param1}
+	</select>
 
 </mapper>
