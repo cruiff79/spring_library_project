@@ -6,7 +6,9 @@
 <mapper namespace="com.spring.library.dao.BookDAO">
 
 	<select id="listBook" resultType="com.spring.library.dto.BookDTO">
-		SELECT * FROM BOOK
+	<![CDATA[
+		SELECT * FROM BOOK WHERE ROWNUM <= 5
+	]]>
 	</select>
 	
 	<select id="bookInfo" resultType="com.spring.library.dto.BookDTO">
