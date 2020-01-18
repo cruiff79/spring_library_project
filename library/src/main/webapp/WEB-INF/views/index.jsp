@@ -57,41 +57,15 @@
 				<div class="row">
 					<c:forEach var="item" items="${list}">
 						<div class="col-2">
-							<a href=""><img src="${item.image}" alt="" class="book_image" /></a>
+							<a href="bookInfo?book_id=${item.book_id}"><img src="${item.image}" alt="" class="book_image" /></a>
 							<h3>${item.title}</h3>
 						</div>
 					</c:forEach>
-					<!-- 
-					<div class="col-2">
-						<a href=""><img src="https://books.google.com/books/content?id=PXa2bby0oQ0C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="" class="book_image" /></a>
-						<h2>Heading</h2>
-					</div>
-					<div class="col-2">
-						<a href=""><img src="http://books.google.com/books/content?id=UAYvDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="" class="book_image" /></a>
-						<h2>Heading</h2>
-					</div>
-					<div class="col-2">
-						<a href=""><img src="http://books.google.com/books/content?id=OW_6BWEQAo4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="" class="book_image" /></a>
-						<h2>Heading</h2>
-					</div>
-					<div class="col-2">
-						<a href=""><img src="http://books.google.com/books/content?id=CxY3lNQTATQC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="" class="book_image" /></a>
-						<h2>Heading</h2>
-					</div>
-					<div class="col-2">
-						<a href=""><img src="http://books.google.com/books/content?id=XiWGDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="" class="book_image" /></a>
-						<h2>Heading</h2>
-					</div>
-					<div class="col-2">
-						<a href=""><img src="http://books.google.com/books/content?id=vJGlu9t9LNYC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="" class="book_image" /></a>
-						<h2>Heading</h2>
-					</div>
-					 -->
 				</div>
-			</div> <!-- /container -->
+			</div>
 		</main>
 
-		<footer class="fixed-bottom">
+		<footer>
 			<hr>
 			<div class="container">
 				<p>Public library Copyright &copy; 2020</p>
