@@ -26,4 +26,10 @@ public class BookListService implements BookService {
 		return bookDAO.bookInfo(book_id);
 	}
 
+	@Override
+	public List<BookDTO> searchBook(String search) {
+		// TODO Auto-generated method stub
+		return bookDAO.searchBook(search);
+	}
+
 }

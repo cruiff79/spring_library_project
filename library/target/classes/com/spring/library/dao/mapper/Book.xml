@@ -7,12 +7,18 @@
 
 	<select id="listBook" resultType="com.spring.library.dto.BookDTO">
 	<![CDATA[
-		SELECT * FROM BOOK WHERE ROWNUM <= 5
+		SELECT * FROM BOOK
 	]]>
 	</select>
 	
 	<select id="bookInfo" resultType="com.spring.library.dto.BookDTO">
 		SELECT * FROM BOOK WHERE BOOK_ID = #{param1}
 	</select>
-
+	
+	<select id="searchBook" resultType="com.spring.library.dto.BookDTO">
+	<![CDATA[
+		SELECT * FROM BOOK WHERE UPPER(TITLE) LIKE '%' || UPPER(#{param1}) || '%'
+	]]>
+	</select>
+	
 </mapper>

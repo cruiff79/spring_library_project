@@ -7,4 +7,5 @@ import com.spring.library.dto.BookDTO;
 public interface BookDAO {
 	List<BookDTO> listBook();
 	BookDTO bookInfo(int book_id);
+	List<BookDTO> searchBook(String search);
 }

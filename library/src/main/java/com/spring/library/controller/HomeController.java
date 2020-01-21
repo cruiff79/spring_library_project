@@ -62,4 +62,13 @@ public class HomeController {
 		return "sign_in";
 	}
 	
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String search_book(HttpServletRequest request, Model model) {
+		String search = request.getParameter("search");
+		List<BookDTO> list = bookService.searchBook(search);
+		model.addAttribute("list", list);
+		
+		return "search";
+	}
+	
 }
