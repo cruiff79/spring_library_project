@@ -1,5 +1,8 @@
 package com.spring.library.dto;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class BookDTO {
 
 	int book_id;
@@ -11,6 +14,7 @@ public class BookDTO {
 	int page;
 	String description;
 	String image;
+	String categories;
 	
 	public int getBook_id() {
 		return book_id;
@@ -66,5 +70,10 @@ public class BookDTO {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
+	public String getCategories() {
+		return categories;
+	}
+	public void setCategories(String categories) {
+		this.categories = categories;
+	}
 }

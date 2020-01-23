@@ -68,6 +68,12 @@ body {
 	padding-bottom: 20px;
 }
 
+.index_main_container {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
 .main_container {
+	padding-top: 100px;
 	padding-bottom: 50px;
 }

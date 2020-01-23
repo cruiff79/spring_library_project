@@ -7,7 +7,7 @@
 
 	<select id="listBook" resultType="com.spring.library.dto.BookDTO">
 	<![CDATA[
-		SELECT * FROM BOOK
+		SELECT * FROM BOOK WHERE ROWNUM <= 6
 	]]>
 	</select>
 	
@@ -20,5 +20,22 @@
 		SELECT * FROM BOOK WHERE UPPER(TITLE) LIKE '%' || UPPER(#{param1}) || '%'
 	]]>
 	</select>
+	
+	<select id="subject" resultType="com.spring.library.dto.CategoryDTO">
+		SELECT * FROM CATEGORY
+	</select>
+	 
+	<insert id="insertBook" parameterType="com.spring.library.dto.BookDTO">
+	<![CDATA[
+		INSERT INTO BOOK
+		(
+			BOOK_ID, TITLE, AUTHOR, ISBN, PUBLISHED_DATE, PUBLISHER, PAGE, DESCRIPTION, IMAGE, CATEGORIES, INSERT_ID, UPDATE_ID, INSERT_DATE, UPDATE_DATE
+		)
+		VALUES
+		(
+			BOOK_SEQ.NEXTVAL, #{title}, #{author}, #{isbn}, #{published_date}, #{publisher}, #{page}, #{description}, #{image}, #{categories}, 'admin', 'admin', sysdate, sysdate
+		)
+	]]>
+	</insert>
 	
 </mapper>

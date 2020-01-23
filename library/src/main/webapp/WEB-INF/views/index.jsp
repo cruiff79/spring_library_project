@@ -8,7 +8,7 @@
 				</div>
 			</div>
 			
-			<div class="container main_container">
+			<div class="container index_main_container">
 				<div class="row">
 					<h3>Just add</h3>
 				</div>
@@ -24,7 +24,7 @@
 					</c:forEach>
 				</div>
 			</div>
-			<div class="container main_container">
+			<div class="container index_main_container">
 				<div class="row">
 					<h3>Your next great read</h3>
 				</div>

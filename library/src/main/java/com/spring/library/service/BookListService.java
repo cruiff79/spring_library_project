@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.library.dao.BookDAO;
 import com.spring.library.dto.BookDTO;
+import com.spring.library.dto.CategoryDTO;
 
 @Service
 public class BookListService implements BookService {
@@ -30,6 +31,18 @@ public class BookListService implements BookService {
 	public List<BookDTO> searchBook(String search) {
 		// TODO Auto-generated method stub
 		return bookDAO.searchBook(search);
+	}
+
+	@Override
+	public void insertBook(BookDTO bookDTO) {
+		// TODO Auto-generated method stub
+		bookDAO.insertBook(bookDTO);
+	}
+
+	@Override
+	public List<CategoryDTO> subject() {
+		// TODO Auto-generated method stub
+		return bookDAO.subject();
 	}
 
 }
