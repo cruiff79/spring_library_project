@@ -3,7 +3,7 @@
 		<main role="main">
 			<div class="container main_container">
 				<div class="row">
-					<h3>ALL SubjectS</h3>
+					<h3>ALL Subjects</h3>
 				</div>
 				<div class="card-columns">
 					<c:forEach var="item" items="${list}">
