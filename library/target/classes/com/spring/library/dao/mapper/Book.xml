@@ -21,7 +21,7 @@
 	]]>
 	</select>
 	
-	<select id="subject" resultType="com.spring.library.dto.CategoryDTO">
+	<select id="allCategory" resultType="com.spring.library.dto.CategoryDTO">
 		SELECT * FROM CATEGORY
 	</select>
 	 
@@ -29,13 +29,34 @@
 	<![CDATA[
 		INSERT INTO BOOK
 		(
-			BOOK_ID, TITLE, AUTHOR, ISBN, PUBLISHED_DATE, PUBLISHER, PAGE, DESCRIPTION, IMAGE, CATEGORIES, INSERT_ID, UPDATE_ID, INSERT_DATE, UPDATE_DATE
+			BOOK_ID, TITLE, AUTHOR, ISBN, PUBLISHED_DATE, PUBLISHER, PAGE, DESCRIPTION, IMAGE, CATEGORY_ID, INSERT_ID, UPDATE_ID, INSERT_DATE, UPDATE_DATE
 		)
 		VALUES
 		(
-			BOOK_SEQ.NEXTVAL, #{title}, #{author}, #{isbn}, #{published_date}, #{publisher}, #{page}, #{description}, #{image}, #{categories}, 'admin', 'admin', sysdate, sysdate
+			BOOK_SEQ.NEXTVAL, #{title}, #{author}, #{isbn}, #{published_date}, #{publisher}, #{page}, #{description}, #{image}, #{category_id}, 'admin', 'admin', sysdate, sysdate
 		)
 	]]>
 	</insert>
+	
+	<insert id="insertCategory" parameterType="com.spring.library.dto.CategoryDTO">
+	<![CDATA[
+		INSERT INTO CATEGORY
+		(
+			CATEGORY_ID, CATEGORY_NAME
+		)
+		VALUES
+		(
+			CATEGORY_SEQ.NEXTVAL, #{category_name}
+		)
+	]]>
+	</insert>
+	
+	<select id="searchCategory" resultType="com.spring.library.dto.CategoryDTO">
+		SELECT * FROM CATEGORY WHERE CATEGORY_NAME = #{category_name}
+	</select>
+	
+	<select id="bookCategory" resultType="com.spring.library.dto.BookDTO">
+		SELECT BOOK_ID, TITLE, AUTHOR, IMAGE, CATEGORY_ID FROM BOOK WHERE CATEGORY_ID = #{param1}
+	</select>
 	
 </mapper>

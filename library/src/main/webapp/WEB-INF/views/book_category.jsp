@@ -3,6 +3,9 @@
 		<main role="main">
 			<div class="container main_container">
 				<div class="row">
+					<h3>${category_name}</h3>
+				</div>
+				<div class="row">
 					<c:forEach var="item" items="${list}">
 						<div class="col-sm-3">
 							<div class="card">

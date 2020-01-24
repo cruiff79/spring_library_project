@@ -10,5 +10,8 @@ public interface BookDAO {
 	BookDTO bookInfo(int book_id);
 	List<BookDTO> searchBook(String search);
 	void insertBook(BookDTO bookDTO);
-	List<CategoryDTO> subject();
+	List<CategoryDTO> allCategory();
+	void insertCategory(CategoryDTO categoryDTO);
+	CategoryDTO searchCategory(String category_name);
+	List<BookDTO> bookCategory(int category_id);
 }

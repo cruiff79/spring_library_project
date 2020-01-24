@@ -2,11 +2,14 @@
 		
 		<main role="main">
 			<div class="container main_container">
-				<div class="card-deck">
+				<div class="row">
+					<h3>ALL SubjectS</h3>
+				</div>
+				<div class="card-columns">
 					<c:forEach var="item" items="${list}">
 		                <div class="card text-center">
 		                    <div class="card-block">
-		                    	<a href="">${item.category_name}</a>
+		                    	<a href="searchSubject?category_id=${item.category_id}&category_name=${item.category_name}">${item.category_name}</a>
 		                    </div>
 		                </div>
 					</c:forEach>

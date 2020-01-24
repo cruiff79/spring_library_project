@@ -40,9 +40,27 @@ public class BookListService implements BookService {
 	}
 
 	@Override
-	public List<CategoryDTO> subject() {
+	public List<CategoryDTO> allCategory() {
 		// TODO Auto-generated method stub
-		return bookDAO.subject();
+		return bookDAO.allCategory();
+	}
+
+	@Override
+	public void insertCategory(CategoryDTO categoryDTO) {
+		// TODO Auto-generated method stub
+		bookDAO.insertCategory(categoryDTO);
+	}
+
+	@Override
+	public CategoryDTO searchCategory(String category_name) {
+		// TODO Auto-generated method stub
+		return bookDAO.searchCategory(category_name);
+	}
+
+	@Override
+	public List<BookDTO> bookCategory(int category_id) {
+		// TODO Auto-generated method stub
+		return bookDAO.bookCategory(category_id);
 	}
 
 }

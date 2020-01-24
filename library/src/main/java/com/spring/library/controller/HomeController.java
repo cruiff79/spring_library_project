@@ -1,5 +1,6 @@
 package com.spring.library.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -66,7 +67,7 @@ public class HomeController {
 	@RequestMapping(value = "/subjects", method = RequestMethod.GET)
 	public String subject_list(Model model) {
 		System.out.println("======== subject_list method ===========");
-		List<CategoryDTO> categoryList = bookService.subject();
+		List<CategoryDTO> categoryList = bookService.allCategory();
 		model.addAttribute("list" , categoryList);
 		
 		return "subjects";
@@ -89,14 +90,29 @@ public class HomeController {
 		return "search";
 	}
 	
+	@RequestMapping(value = "/searchSubject", method = RequestMethod.GET)
+	public String book_category(HttpServletRequest request, Model model) {
+		System.out.println("======== book_category method ===========");
+		int category_id = Integer.parseInt(request.getParameter("category_id"));
+		String category_name = request.getParameter("category_name");
+		List bookCategory = bookService.bookCategory(category_id);
+		model.addAttribute("list", bookCategory);
+		model.addAttribute("category_name", category_name);
+		
+		return "book_category";
+	}
+	
 	@RequestMapping(value = "/google_books_api", method = RequestMethod.GET)
 	public String google_books_api(Model model) {
+		System.out.println("======== google_books_api method ===========");
 		
 		return "google_books_api";
 	}
 	
 	@RequestMapping(value = "/google_books_api_insert", method = RequestMethod.POST)
 	public String google_books_api_insert(HttpServletRequest request, Model model) {
+		System.out.println("======== google_books_api_insert method ===========");
+		
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String publisher = request.getParameter("publisher");
@@ -107,6 +123,14 @@ public class HomeController {
 		String img = request.getParameter("img");
 		String categories = request.getParameter("categories");
 		
+		CategoryDTO searchCategory = bookService.searchCategory(categories);
+		
+		if(searchCategory == null) {
+			categoryDTO.setCategory_name(categories);
+			bookService.insertCategory(categoryDTO);
+			searchCategory = bookService.searchCategory(categories);
+		}
+		
 		bookDTO.setTitle(title);
 		bookDTO.setAuthor(author);
 		bookDTO.setPublisher(publisher);
@@ -115,7 +139,7 @@ public class HomeController {
 		bookDTO.setPage(page);
 		bookDTO.setIsbn(isbn);
 		bookDTO.setImage(img);
-		bookDTO.setCategories(categories);
+		bookDTO.setCategory_id(searchCategory.getCategory_id());
 
 		bookService.insertBook(bookDTO);
 		
