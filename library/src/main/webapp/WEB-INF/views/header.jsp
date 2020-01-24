@@ -11,6 +11,7 @@
 		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 		<meta name="generator" content="Jekyll v3.8.5">
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="/library/resources/js/main.js"></script>
 		<link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/jumbotron/">
 		<link rel="stylesheet" type="text/css" href="/library/resources/css/main.css">
 	  	<!-- Bootstrap core CSS -->
@@ -33,6 +34,9 @@
 						<a class="nav-link" href="/library/subjects">Subjects</a>
 					</li>
 				</ul>
+				<div class="navbar-nav">
+					<div class="nav-item"><a class="nav-link" href="/library/sign_up">Sign up</a></div>
+				</div>
 				<div class="navbar-nav">
 					<div class="nav-item"><a class="nav-link" href="/library/sign_in">Sign in</a></div>
 				</div>

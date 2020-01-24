@@ -59,4 +59,15 @@
 		SELECT BOOK_ID, TITLE, AUTHOR, IMAGE, CATEGORY_ID FROM BOOK WHERE CATEGORY_ID = #{param1}
 	</select>
 	
+	<insert id="createUser" parameterType="com.spring.library.dto.UserDTO">
+		INSERT INTO MEMBER
+		(
+			USER_ID, PASSWORD, NAME, ADDRESS, POST_CODE, PHONE
+		)
+		VALUES
+		(
+			#{user_id}, #{password}, #{name}, #{address}, #{post_code}, #{phone}
+		)
+	</insert>
+	
 </mapper>

@@ -1,4 +1,13 @@
-$(document).ready(function(){
+$(document).ready(function() {
+	$("#sign_up").click(function() {
+		alert($("#email").val());
+//		$("myForm").attr('action', 'sign_up_insert');
+		$("#myForm").submit();
+		alert("success");
+	});
+});
+
+$(document).ready(function() {
     $("button").click(function(){
         var search = $("#books").val();
 

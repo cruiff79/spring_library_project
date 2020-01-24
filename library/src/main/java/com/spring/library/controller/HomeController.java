@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.library.dto.BookDTO;
 import com.spring.library.dto.CategoryDTO;
+import com.spring.library.dto.UserDTO;
 import com.spring.library.service.BookService;
 
 /**
@@ -33,6 +34,9 @@ public class HomeController {
 	
 	@Autowired
 	CategoryDTO categoryDTO;
+	
+	@Autowired
+	UserDTO userDTO;
 	
 	/**
 	 * index page
@@ -78,6 +82,35 @@ public class HomeController {
 		System.out.println("======== sign_in method ===========");
 		
 		return "sign_in";
+	}
+	
+	@RequestMapping(value = "sign_up_insert", method = RequestMethod.POST)
+	public String sign_up_insert(HttpServletRequest request, Model model) {
+		System.out.println("======== sign_in_insert method ===========");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String user_name = request.getParameter("user_name");
+		String address = request.getParameter("address");
+		String post_code = request.getParameter("post_code");
+		String phone_number = request.getParameter("phone_number");
+		
+		userDTO.setUser_id(email);
+		userDTO.setPassword(password);
+		userDTO.setName(user_name);
+		userDTO.setAddress(address);
+		userDTO.setPost_code(post_code);
+		userDTO.setPhone(phone_number);
+		
+		bookService.createUser(userDTO);
+		
+		return "redirect:sign_in";
+	}
+	
+	@RequestMapping(value = "/sign_up", method = RequestMethod.GET)
+	public String sign_up(Model model) {
+		System.out.println("======== sign_up method ===========");
+		
+		return "sign_up";
 	}
 	
 	@RequestMapping(value = "/search", method = RequestMethod.GET)

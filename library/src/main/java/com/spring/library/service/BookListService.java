@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.spring.library.dao.BookDAO;
 import com.spring.library.dto.BookDTO;
 import com.spring.library.dto.CategoryDTO;
+import com.spring.library.dto.UserDTO;
 
 @Service
 public class BookListService implements BookService {
@@ -61,6 +62,12 @@ public class BookListService implements BookService {
 	public List<BookDTO> bookCategory(int category_id) {
 		// TODO Auto-generated method stub
 		return bookDAO.bookCategory(category_id);
+	}
+
+	@Override
+	public void createUser(UserDTO userDTO) {
+		// TODO Auto-generated method stub
+		bookDAO.createUser(userDTO);
 	}
 
 }

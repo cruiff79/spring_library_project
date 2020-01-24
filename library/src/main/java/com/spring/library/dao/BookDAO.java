@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.spring.library.dto.BookDTO;
 import com.spring.library.dto.CategoryDTO;
+import com.spring.library.dto.UserDTO;
 
 public interface BookDAO {
 	List<BookDTO> listBook();
@@ -14,4 +15,5 @@ public interface BookDAO {
 	void insertCategory(CategoryDTO categoryDTO);
 	CategoryDTO searchCategory(String category_name);
 	List<BookDTO> bookCategory(int category_id);
+	void createUser(UserDTO userDTO);
 }
