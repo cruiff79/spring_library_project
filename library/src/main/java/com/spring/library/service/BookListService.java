@@ -70,4 +70,10 @@ public class BookListService implements BookService {
 		bookDAO.createUser(userDTO);
 	}
 
+	@Override
+	public UserDTO user(UserDTO userDTO) {
+		// TODO Auto-generated method stub
+		return bookDAO.user(userDTO);
+	}
+
 }

@@ -84,6 +84,31 @@ public class HomeController {
 		return "sign_in";
 	}
 	
+	@RequestMapping(value = "/sign_in_process", method = RequestMethod.POST)
+	public String sign_in_process(HttpServletRequest request, Model model) {
+		System.out.println("======== sign_in_process method ===========");
+		String url = "";
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		userDTO.setUser_id(email);
+		userDTO.setPassword(password);
+		
+		UserDTO user = bookService.user(userDTO);
+		
+		if(user != null) {
+			model.addAttribute("user", user);
+			model.addAttribute("", "Login Success");
+			
+			url = "redirect:/";
+		} else {
+			model.addAttribute("", "Login Fail");
+			url = "redirect:sign_in";
+		}
+		
+		return url;
+	}
+	
 	@RequestMapping(value = "sign_up_insert", method = RequestMethod.POST)
 	public String sign_up_insert(HttpServletRequest request, Model model) {
 		System.out.println("======== sign_in_insert method ===========");

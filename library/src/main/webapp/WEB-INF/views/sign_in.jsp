@@ -9,14 +9,14 @@
 							<h1>Welcome!</h1>
 							<p>Please sign in</p>
 						</div>
-						<form>
+						<form id="signInForm" method="post" action="sign_in_process">
 							<div class="form-group">
-								<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+								<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+								<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 							</div>
-							<button type="submit" class="btn btn-primary">Sign in</button>
+							<button id="sign_in" class="btn btn-primary">Sign in</button>
 						</form>
 					</div>
 					<div class="col-1"></div>

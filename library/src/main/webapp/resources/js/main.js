@@ -1,7 +1,9 @@
 $(document).ready(function() {
+	$("#sign_in").click(function(){
+		$("#signInForm").submit();
+	});
+	
 	$("#sign_up").click(function() {
-		alert($("#email").val());
-//		$("myForm").attr('action', 'sign_up_insert');
 		$("#myForm").submit();
 		alert("success");
 	});

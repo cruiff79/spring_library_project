@@ -70,4 +70,8 @@
 		)
 	</insert>
 	
+	<select id="user" resultType="com.spring.library.dto.UserDTO">
+		SELECT * FROM MEMBER WHERE USER_ID = #{user_id} AND PASSWORD = #{password}
+	</select>
+	
 </mapper>
