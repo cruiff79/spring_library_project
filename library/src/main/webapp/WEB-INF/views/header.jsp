@@ -2,6 +2,11 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<% 
+String sessionID = (String)request.getSession().getAttribute("sessionID");
+String userName = (String)request.getSession().getAttribute("userName");
+%>
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -35,10 +40,12 @@
 					</li>
 				</ul>
 				<div class="navbar-nav">
-					<div class="nav-item"><a class="nav-link" href="/library/sign_up">Sign up</a></div>
+					<c:if test="${sessionID != null}"><div class="nav-item"><a class="nav-link" href="">${userName}</a></div></c:if>
+					<c:if test="${sessionID == null}"><div class="nav-item"><a class="nav-link" href="/library/sign_up">Sign up</a></div></c:if>
 				</div>
 				<div class="navbar-nav">
-					<div class="nav-item"><a class="nav-link" href="/library/sign_in">Sign in</a></div>
+					<c:if test="${sessionID != null}"><div class="nav-item"><a class="nav-link" href="/library/sign_out">Sign out</a></div></c:if>
+					<c:if test="${sessionID == null}"><div class="nav-item"><a class="nav-link" href="/library/sign_in">Sign in</a></div></c:if>
 				</div>
 				<form class="form-inline my-2 my-lg-0" action="/library/search" method="get">
 					<input id="search" name="search" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.library.dto.BookDTO;
 import com.spring.library.dto.CategoryDTO;
@@ -37,6 +39,8 @@ public class HomeController {
 	
 	@Autowired
 	UserDTO userDTO;
+	
+	String sessionID;
 	
 	/**
 	 * index page
@@ -97,8 +101,9 @@ public class HomeController {
 		UserDTO user = bookService.user(userDTO);
 		
 		if(user != null) {
+			request.getSession().setAttribute("sessionID", request.getSession().getId());
+			request.getSession().setAttribute("userName", user.getName());
 			model.addAttribute("user", user);
-			model.addAttribute("", "Login Success");
 			
 			url = "redirect:/";
 		} else {
@@ -136,6 +141,15 @@ public class HomeController {
 		System.out.println("======== sign_up method ===========");
 		
 		return "sign_up";
+	}
+	
+	@RequestMapping(value = "/sign_out", method = RequestMethod.GET)
+	public String sign_out(HttpServletRequest request) throws Exception {
+		System.out.println("======== sign_out method ===========");
+		request.getSession().removeAttribute("sessionID");
+		request.getSession().removeAttribute("userName");
+		
+		return "sign_out";
 	}
 	
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
