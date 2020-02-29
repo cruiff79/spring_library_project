@@ -23,7 +23,7 @@
 							<b>Release date</b>: ${bookInfo.published_date}
 						</div>
 						<div>
-							<b>Borrowed?</b>: ${bookInfo.isRental}
+							<b>Borrowed?</b>: ${bookInfo.isBorrowed}
 						</div>
 						<div>
 							<h5>Description</h5>

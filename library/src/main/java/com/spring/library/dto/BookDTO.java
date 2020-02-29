@@ -17,7 +17,7 @@ public class BookDTO {
 	int category_id;
 	String start_date;
 	String end_date;
-	String isRental;
+	String isBorrowed;
 	
 	public int getBook_id() {
 		return book_id;
@@ -91,10 +91,10 @@ public class BookDTO {
 	public void setEnd_date(String end_date) {
 		this.end_date = end_date;
 	}
-	public String getIsRental() {
-		return isRental;
+	public String getIsBorrowed() {
+		return isBorrowed;
 	}
-	public void setIsRental(String isRental) {
-		this.isRental = isRental;
+	public void setIsBorrowed(String isBorrowed) {
+		this.isBorrowed = isBorrowed;
 	}
 }

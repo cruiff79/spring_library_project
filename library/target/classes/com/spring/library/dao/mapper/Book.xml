@@ -16,7 +16,7 @@
 	<select id="bookInfo" resultType="com.spring.library.dto.BookDTO">
 		SELECT A.*,
 		        (CASE WHEN TO_DATE(B.END_DATE, 'YYYY-MM-DD') - SYSDATE >= 0 THEN 'YES'
-		        	ELSE 'NO' END) AS ISRENTAL
+		        	ELSE 'NO' END) AS ISBORROWED
 		    FROM BOOK A, RENTAL B
 		    WHERE A.BOOK_ID = B.BOOK_ID(+)
 		      AND A.BOOK_ID = #{param1}
