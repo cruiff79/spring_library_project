@@ -18,4 +18,5 @@ public interface BookService {
 	List<BookDTO> bookCategory(int category_id);
 	void createUser(UserDTO userDTO);
 	UserDTO user(UserDTO userDTO);
+	List<BookDTO> myBookList(String user_id);
 }

@@ -7,6 +7,18 @@ $(document).ready(function() {
 		$("#myForm").submit();
 		alert("success");
 	});
+	
+	$("#myBooks").click(function(e) {
+		e.preventDefault();
+		var user_id = $("#user_id").val();
+		if(user_id == null || user_id == '') {
+			alert("Please Sign in");
+		} else {
+			$("#myBookForm").attr("action", "myBooks");
+			$("#myBookForm").attr("method", "POST");
+			$("#myBookForm").submit();
+		}
+	});
 });
 
 $(document).ready(function() {

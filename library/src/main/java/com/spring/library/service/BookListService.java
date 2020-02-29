@@ -76,4 +76,10 @@ public class BookListService implements BookService {
 		return bookDAO.user(userDTO);
 	}
 
+	@Override
+	public List<BookDTO> myBookList(String user_id) {
+		// TODO Auto-generated method stub
+		return bookDAO.myBookList(user_id);
+	}
+
 }

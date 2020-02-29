@@ -81,6 +81,16 @@ public class HomeController {
 		return "subjects";
 	}
 	
+	@RequestMapping(value = "/myBooks", method = RequestMethod.POST)
+	public String myBook_list(HttpServletRequest request, Model model) {
+		System.out.println("======== myBook_list method ===========");
+		String user_id = request.getParameter("user_id");
+		List<BookDTO> myBookList = bookService.myBookList(user_id);
+		model.addAttribute("list", myBookList);
+		
+		return "myBooks";
+	}
+	
 	@RequestMapping(value = "/sign_in", method = RequestMethod.GET)
 	public String sign_in(Model model) {
 		System.out.println("======== sign_in method ===========");
@@ -101,8 +111,8 @@ public class HomeController {
 		UserDTO user = bookService.user(userDTO);
 		
 		if(user != null) {
-			request.getSession().setAttribute("sessionID", request.getSession().getId());
-			request.getSession().setAttribute("userName", user.getName());
+			request.getSession().setAttribute("user_id", user.getUser_id());
+			request.getSession().setAttribute("user_name", user.getName());
 			model.addAttribute("user", user);
 			
 			url = "redirect:/";
@@ -114,9 +124,9 @@ public class HomeController {
 		return url;
 	}
 	
-	@RequestMapping(value = "sign_up_insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/sign_up_insert", method = RequestMethod.POST)
 	public String sign_up_insert(HttpServletRequest request, Model model) {
-		System.out.println("======== sign_in_insert method ===========");
+		System.out.println("======== sign_up_insert method ===========");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String user_name = request.getParameter("user_name");
@@ -146,8 +156,8 @@ public class HomeController {
 	@RequestMapping(value = "/sign_out", method = RequestMethod.GET)
 	public String sign_out(HttpServletRequest request) throws Exception {
 		System.out.println("======== sign_out method ===========");
-		request.getSession().removeAttribute("sessionID");
-		request.getSession().removeAttribute("userName");
+		request.getSession().removeAttribute("user_id");
+		request.getSession().removeAttribute("user_name");
 		
 		return "sign_out";
 	}

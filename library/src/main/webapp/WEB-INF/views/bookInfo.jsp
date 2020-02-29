@@ -22,8 +22,8 @@
 						<div>
 							<b>Release date</b>: ${bookInfo.published_date}
 						</div>
-						<div class="button_borrow">
-							<button type="button" class="btn btn-primary btn-lg">BORROW</button>
+						<div>
+							<b>Borrowed?</b>: ${bookInfo.isRental}
 						</div>
 						<div>
 							<h5>Description</h5>
