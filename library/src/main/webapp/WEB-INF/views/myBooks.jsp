@@ -2,7 +2,7 @@
 		
 		<main role="main">
 			<div class="container book_info">
-				<div class="rental_info"><h5>Total Rental: ${fn:length(list)}</h5></div>
+				<div class="rental_info"><h5>Total borrowed: ${fn:length(list)}</h5></div>
 				<c:forEach var="item" items="${list}">
 				<div class="row">
 					<div class="col-3">
