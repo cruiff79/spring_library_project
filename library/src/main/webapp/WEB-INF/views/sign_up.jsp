@@ -7,7 +7,7 @@
 	                    <div class="card">
 	                        <div class="card-header">SIGN UP</div>
 	                        <div class="card-body">
-	                            <form id="myForm" name="myForm" method="post" action="sign_up_insert">
+	                            <form id="myForm" name="myForm">
 	                                <div class="form-group row">
 	                                    <label for="email" class="col-md-4 col-form-label text-md-right">E-MAIL</label>
 	                                    <div class="col-md-6">
