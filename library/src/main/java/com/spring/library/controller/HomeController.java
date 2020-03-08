@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,7 +111,8 @@ public class HomeController {
 		
 		UserDTO user = bookService.user(userDTO);
 		
-		if(user != null) {
+		// login and password decrypt
+		if(user != null && BCrypt.checkpw(password, user.getPassword())) {
 			request.getSession().setAttribute("user_id", user.getUser_id());
 			request.getSession().setAttribute("user_name", user.getName());
 			model.addAttribute("user", user);
@@ -133,6 +135,8 @@ public class HomeController {
 		String address = request.getParameter("address");
 		String post_code = request.getParameter("post_code");
 		String phone_number = request.getParameter("phone_number");
+		// password encrypt
+		password = BCrypt.hashpw(password, BCrypt.gensalt());
 		
 		userDTO.setUser_id(email);
 		userDTO.setPassword(password);

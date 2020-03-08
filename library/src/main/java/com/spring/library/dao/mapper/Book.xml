@@ -86,7 +86,7 @@
 	
 	<!-- sign in -->
 	<select id="user" resultType="com.spring.library.dto.UserDTO">
-		SELECT * FROM MEMBER WHERE USER_ID = #{user_id} AND PASSWORD = #{password}
+		SELECT * FROM MEMBER WHERE USER_ID = #{user_id}
 	</select>
 	
 	<!-- myBook list -->
