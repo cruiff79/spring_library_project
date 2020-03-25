@@ -1,9 +1,9 @@
-package com.spring.library.dto;
+package com.spring.library.vo;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CategoryDTO {
+public class Category {
 	int category_id;
 	String category_name;
 	

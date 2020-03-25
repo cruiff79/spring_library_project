@@ -1,9 +1,9 @@
-package com.spring.library.dto;
+package com.spring.library.vo;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDTO {
+public class User {
 	String user_id;
 	String password;
 	String name;

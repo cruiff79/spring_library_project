@@ -6,14 +6,14 @@
 <mapper namespace="com.spring.library.dao.BookDAO">
 
 	<!-- list book on main page -->
-	<select id="listBook" resultType="com.spring.library.dto.BookDTO">
+	<select id="listBook" resultType="com.spring.library.vo.Book">
 	<![CDATA[
 		SELECT * FROM BOOK WHERE ROWNUM <= 6
 	]]>
 	</select>
 	
 	<!-- detail book information -->
-	<select id="bookInfo" resultType="com.spring.library.dto.BookDTO">
+	<select id="bookInfo" resultType="com.spring.library.vo.Book">
 		SELECT A.*,
 		        (CASE WHEN TO_DATE(B.END_DATE, 'YYYY-MM-DD') - SYSDATE >= 0 THEN 'YES'
 		        	ELSE 'NO' END) AS ISBORROWED
@@ -23,19 +23,19 @@
 	</select>
 	
 	<!-- search book -->
-	<select id="searchBook" resultType="com.spring.library.dto.BookDTO">
+	<select id="searchBook" resultType="com.spring.library.vo.Book">
 	<![CDATA[
 		SELECT * FROM BOOK WHERE UPPER(TITLE) LIKE '%' || UPPER(#{param1}) || '%'
 	]]>
 	</select>
 	
 	<!-- list all category -->
-	<select id="allCategory" resultType="com.spring.library.dto.CategoryDTO">
+	<select id="allCategory" resultType="com.spring.library.vo.Category">
 		SELECT * FROM CATEGORY
 	</select>
 	 
 	 <!-- insert book -->
-	<insert id="insertBook" parameterType="com.spring.library.dto.BookDTO">
+	<insert id="insertBook" parameterType="com.spring.library.vo.Book">
 	<![CDATA[
 		INSERT INTO BOOK
 		(
@@ -49,7 +49,7 @@
 	</insert>
 	
 	<!-- insert category -->
-	<insert id="insertCategory" parameterType="com.spring.library.dto.CategoryDTO">
+	<insert id="insertCategory" parameterType="com.spring.library.vo.Category">
 	<![CDATA[
 		INSERT INTO CATEGORY
 		(
@@ -63,17 +63,17 @@
 	</insert>
 	
 	<!-- search category -->
-	<select id="searchCategory" resultType="com.spring.library.dto.CategoryDTO">
+	<select id="searchCategory" resultType="com.spring.library.vo.Category">
 		SELECT * FROM CATEGORY WHERE CATEGORY_NAME = #{category_name}
 	</select>
 	
 	<!-- list book of category -->
-	<select id="bookCategory" resultType="com.spring.library.dto.BookDTO">
+	<select id="bookCategory" resultType="com.spring.library.vo.Book">
 		SELECT BOOK_ID, TITLE, AUTHOR, IMAGE, CATEGORY_ID FROM BOOK WHERE CATEGORY_ID = #{param1}
 	</select>
 	
 	<!-- sign up -->
-	<insert id="createUser" parameterType="com.spring.library.dto.UserDTO">
+	<insert id="createUser" parameterType="com.spring.library.vo.User">
 		INSERT INTO MEMBER
 		(
 			USER_ID, PASSWORD, NAME, ADDRESS, POST_CODE, PHONE
@@ -85,12 +85,12 @@
 	</insert>
 	
 	<!-- sign in -->
-	<select id="user" resultType="com.spring.library.dto.UserDTO">
+	<select id="user" resultType="com.spring.library.vo.User">
 		SELECT * FROM MEMBER WHERE USER_ID = #{user_id}
 	</select>
 	
 	<!-- myBook list -->
-	<select id="myBookList" resultType="com.spring.library.dto.BookDTO">
+	<select id="myBookList" resultType="com.spring.library.vo.Book">
 		SELECT A.START_DATE, A.END_DATE, B.BOOK_ID, B.TITLE, B.AUTHOR, B.PUBLISHER, B.IMAGE
 		    FROM RENTAL A, BOOK B
 		    WHERE A.BOOK_ID = B.BOOK_ID

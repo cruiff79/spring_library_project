@@ -1,9 +1,9 @@
-package com.spring.library.dto;
+package com.spring.library.vo;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BookDTO {
+public class Book {
 
 	int book_id;
 	String title;

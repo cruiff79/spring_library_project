@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.library.dto.BookDTO;
-import com.spring.library.dto.CategoryDTO;
-import com.spring.library.dto.UserDTO;
 import com.spring.library.service.BookService;
+import com.spring.library.vo.Book;
+import com.spring.library.vo.Category;
+import com.spring.library.vo.User;
 
 /**
  * Handles requests for the application home page.
@@ -33,13 +33,13 @@ public class HomeController {
 	BookService bookService;
 	
 	@Autowired
-	BookDTO bookDTO;
+	Book book;
 	
 	@Autowired
-	CategoryDTO categoryDTO;
+	Category category;
 	
 	@Autowired
-	UserDTO userDTO;
+	User user;
 	
 	String sessionID;
 	
@@ -49,7 +49,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		System.out.println("======== index ===========");
-		List<BookDTO> bookList = bookService.listBook();
+		List<Book> bookList = bookService.listBook();
 		model.addAttribute("list", bookList);
 		
 		return "index";
@@ -60,7 +60,7 @@ public class HomeController {
 	public String book_info(HttpServletRequest request, Model model) {
 		System.out.println("======== book_info ===========");
 		int book_id = Integer.parseInt(request.getParameter("book_id"));
-		BookDTO bookInfo = bookService.bookInfo(book_id);
+		Book bookInfo = bookService.bookInfo(book_id);
 		model.addAttribute("bookInfo", bookInfo);
 		
 		return "bookInfo";
@@ -76,7 +76,7 @@ public class HomeController {
 	@RequestMapping(value = "/subjects", method = RequestMethod.GET)
 	public String subject_list(Model model) {
 		System.out.println("======== subject_list method ===========");
-		List<CategoryDTO> categoryList = bookService.allCategory();
+		List<Category> categoryList = bookService.allCategory();
 		model.addAttribute("list" , categoryList);
 		
 		return "subjects";
@@ -86,7 +86,7 @@ public class HomeController {
 	public String myBook_list(HttpServletRequest request, Model model) {
 		System.out.println("======== myBook_list method ===========");
 		String user_id = request.getParameter("user_id");
-		List<BookDTO> myBookList = bookService.myBookList(user_id);
+		List<Book> myBookList = bookService.myBookList(user_id);
 		model.addAttribute("list", myBookList);
 		
 		return "myBooks";
@@ -106,16 +106,16 @@ public class HomeController {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		userDTO.setUser_id(email);
-		userDTO.setPassword(password);
+		user.setUser_id(email);
+		user.setPassword(password);
 		
-		UserDTO user = bookService.user(userDTO);
+		User loginUser = bookService.user(user);
 		
 		// login and password decrypt
-		if(user != null && BCrypt.checkpw(password, user.getPassword())) {
-			request.getSession().setAttribute("user_id", user.getUser_id());
-			request.getSession().setAttribute("user_name", user.getName());
-			model.addAttribute("user", user);
+		if(loginUser != null && BCrypt.checkpw(password, loginUser.getPassword())) {
+			request.getSession().setAttribute("user_id", loginUser.getUser_id());
+			request.getSession().setAttribute("user_name", loginUser.getName());
+			model.addAttribute("user", loginUser);
 			
 			url = "redirect:/";
 		} else {
@@ -138,14 +138,14 @@ public class HomeController {
 		// password encrypt
 		password = BCrypt.hashpw(password, BCrypt.gensalt());
 		
-		userDTO.setUser_id(email);
-		userDTO.setPassword(password);
-		userDTO.setName(user_name);
-		userDTO.setAddress(address);
-		userDTO.setPost_code(post_code);
-		userDTO.setPhone(phone_number);
+		user.setUser_id(email);
+		user.setPassword(password);
+		user.setName(user_name);
+		user.setAddress(address);
+		user.setPost_code(post_code);
+		user.setPhone(phone_number);
 		
-		bookService.createUser(userDTO);
+		bookService.createUser(user);
 		
 		return "redirect:sign_in";
 	}
@@ -170,7 +170,7 @@ public class HomeController {
 	public String search_book(HttpServletRequest request, Model model) {
 		System.out.println("======== search_book method ===========");
 		String search = request.getParameter("search");
-		List<BookDTO> searchList = bookService.searchBook(search);
+		List<Book> searchList = bookService.searchBook(search);
 		model.addAttribute("list", searchList);
 		
 		return "search";
@@ -209,25 +209,25 @@ public class HomeController {
 		String img = request.getParameter("img");
 		String categories = request.getParameter("categories");
 		
-		CategoryDTO searchCategory = bookService.searchCategory(categories);
+		Category searchCategory = bookService.searchCategory(categories);
 		
 		if(searchCategory == null) {
-			categoryDTO.setCategory_name(categories);
-			bookService.insertCategory(categoryDTO);
+			category.setCategory_name(categories);
+			bookService.insertCategory(category);
 			searchCategory = bookService.searchCategory(categories);
 		}
 		
-		bookDTO.setTitle(title);
-		bookDTO.setAuthor(author);
-		bookDTO.setPublisher(publisher);
-		bookDTO.setPublished_date(publishedDate);
-		bookDTO.setDescription(description);
-		bookDTO.setPage(page);
-		bookDTO.setIsbn(isbn);
-		bookDTO.setImage(img);
-		bookDTO.setCategory_id(searchCategory.getCategory_id());
+		book.setTitle(title);
+		book.setAuthor(author);
+		book.setPublisher(publisher);
+		book.setPublished_date(publishedDate);
+		book.setDescription(description);
+		book.setPage(page);
+		book.setIsbn(isbn);
+		book.setImage(img);
+		book.setCategory_id(searchCategory.getCategory_id());
 
-		bookService.insertBook(bookDTO);
+		bookService.insertBook(book);
 		
 		return "google_books_api";
 	}

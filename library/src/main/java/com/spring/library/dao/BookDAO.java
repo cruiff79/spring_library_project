@@ -2,20 +2,20 @@ package com.spring.library.dao;
 
 import java.util.List;
 
-import com.spring.library.dto.BookDTO;
-import com.spring.library.dto.CategoryDTO;
-import com.spring.library.dto.UserDTO;
+import com.spring.library.vo.Book;
+import com.spring.library.vo.Category;
+import com.spring.library.vo.User;
 
 public interface BookDAO {
-	List<BookDTO> listBook();
-	BookDTO bookInfo(int book_id);
-	List<BookDTO> searchBook(String search);
-	void insertBook(BookDTO bookDTO);
-	List<CategoryDTO> allCategory();
-	void insertCategory(CategoryDTO categoryDTO);
-	CategoryDTO searchCategory(String category_name);
-	List<BookDTO> bookCategory(int category_id);
-	void createUser(UserDTO userDTO);
-	UserDTO user(UserDTO userDTO);
-	List<BookDTO> myBookList(String user_id);
+	List<Book> listBook();
+	Book bookInfo(int book_id);
+	List<Book> searchBook(String search);
+	void insertBook(Book book);
+	List<Category> allCategory();
+	void insertCategory(Category category);
+	Category searchCategory(String category_name);
+	List<Book> bookCategory(int category_id);
+	void createUser(User user);
+	User user(User user);
+	List<Book> myBookList(String user_id);
 }
