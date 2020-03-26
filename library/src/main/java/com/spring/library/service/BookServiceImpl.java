@@ -69,6 +69,12 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		bookDAO.createUser(user);
 	}
+	
+	@Override
+	public void updateUser(User user) {
+		// TODO Auto-generated method stub
+		bookDAO.updateUser(user);
+	}
 
 	@Override
 	public User user(User user) {

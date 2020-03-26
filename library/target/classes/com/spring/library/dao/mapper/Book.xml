@@ -89,6 +89,16 @@
 		SELECT * FROM MEMBER WHERE USER_ID = #{user_id}
 	</select>
 	
+	<update id="updateUser" parameterType="com.spring.library.vo.User">
+		UPDATE MEMBER
+			SET PASSWORD = #{password},
+				NAME = #{name},
+				ADDRESS = #{address},
+				POST_CODE = #{post_code},
+				PHONE = #{phone}
+			WHERE USER_ID = #{user_id}
+	</update>
+	
 	<!-- myBook list -->
 	<select id="myBookList" resultType="com.spring.library.vo.Book">
 		SELECT A.START_DATE, A.END_DATE, B.BOOK_ID, B.TITLE, B.AUTHOR, B.PUBLISHER, B.IMAGE

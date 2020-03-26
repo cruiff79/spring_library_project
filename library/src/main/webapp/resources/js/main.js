@@ -30,6 +30,33 @@ $(document).ready(function() {
 		}
 	});
 	
+	$("#update_user").click(function() {
+		if($("#email").val() == null || $("#email").val() == '') {
+			alert('please insert email');
+			return;
+		} else if($("#password").val() == null || $("#password").val() == '') {
+			alert('please insert password');
+			return;
+		} else if($("#user_name").val() == null || $("#user_name").val() == '') {
+			alert('please insert user_name');
+			return;
+		} else if($("#address").val() == null || $("#address").val() == '') {
+			alert('please insert address');
+			return;
+		} else if($("#post_code").val() == null || $("#post_code").val() == '') {
+			alert('please insert post_code');
+			return;
+		} else if($("#phone_number").val() == null || $("#phone_number").val() == '') {
+			alert('please insert phone_number');
+			return;
+		} else {
+			$("#myForm").attr("action", "update_user_process");
+			$("#myForm").attr("method", "POST");
+			$("#myForm").submit();
+			alert('Successfully Updated');
+		}
+	});
+	
 	$("#myBooks").click(function(e) {
 		e.preventDefault();
 		var user_id = $("#user_id").val();

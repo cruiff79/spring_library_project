@@ -44,7 +44,7 @@ String user_name = (String)request.getSession().getAttribute("user_name");
 					</li>
 				</ul>
 				<div class="navbar-nav">
-					<c:if test="${user_id != null}"><div class="nav-item"><a class="nav-link" href="">${user_name}</a></div></c:if>
+					<c:if test="${user_id != null}"><div class="nav-item"><a class="nav-link" href="/library/update_user">${user_name}</a></div></c:if>
 					<c:if test="${user_id == null}"><div class="nav-item"><a class="nav-link" href="/library/sign_up">Sign up</a></div></c:if>
 				</div>
 				<div class="navbar-nav">

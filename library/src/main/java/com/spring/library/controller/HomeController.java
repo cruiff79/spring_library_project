@@ -166,6 +166,45 @@ public class HomeController {
 		return "sign_out";
 	}
 	
+	@RequestMapping(value = "/update_user", method = RequestMethod.GET)
+	public String update_user(HttpServletRequest request, Model model) {
+		System.out.println("======== update_user method ===========");
+		String email = request.getSession().getAttribute("user_id").toString();
+		user.setUser_id(email);
+		
+		User loginUser = bookService.user(user);
+		model.addAttribute("user", loginUser);
+		
+		return "update_user";
+	}
+	
+	@RequestMapping(value = "/update_user_process", method = RequestMethod.POST)
+	public String update_user_process(HttpServletRequest request, Model model) {
+		System.out.println("======== update_user_process method ===========");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String user_name = request.getParameter("user_name");
+		String address = request.getParameter("address");
+		String post_code = request.getParameter("post_code");
+		String phone_number = request.getParameter("phone_number");
+		// password encrypt
+		password = BCrypt.hashpw(password, BCrypt.gensalt());
+		
+		user.setUser_id(email);
+		user.setPassword(password);
+		user.setName(user_name);
+		user.setAddress(address);
+		user.setPost_code(post_code);
+		user.setPhone(phone_number);
+		
+		bookService.updateUser(user);
+		model.addAttribute("user", user);
+		
+		request.getSession().setAttribute("user_name", user.getName());
+		
+		return "update_user";
+	}
+	
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String search_book(HttpServletRequest request, Model model) {
 		System.out.println("======== search_book method ===========");
