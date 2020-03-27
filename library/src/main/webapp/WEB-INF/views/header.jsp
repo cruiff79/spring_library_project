@@ -51,9 +51,9 @@ String user_name = (String)request.getSession().getAttribute("user_name");
 					<c:if test="${user_id != null}"><div class="nav-item"><a class="nav-link" href="/library/sign_out">Sign out</a></div></c:if>
 					<c:if test="${user_id == null}"><div class="nav-item"><a class="nav-link" href="/library/sign_in">Sign in</a></div></c:if>
 				</div>
-				<form class="form-inline my-2 my-lg-0" action="/library/search" method="get">
+				<form id="formSearchBook" class="form-inline my-2 my-lg-0">
 					<input id="search" name="search" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					<button id="btnSearchBook" class="btn btn-outline-success my-2 my-sm-0">Search</button>
 				</form>
 			</div>
 		</nav>

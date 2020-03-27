@@ -63,11 +63,24 @@ $(document).ready(function() {
 		if(user_id == null || user_id == '') {
 			alert("Please Sign in");
 			window.location.href="/library/sign_in";
-		} else {
-			$("#myBookForm").attr("action", "myBooks");
-			$("#myBookForm").attr("method", "POST");
-			$("#myBookForm").submit();
+			return;
 		}
+
+		$("#myBookForm").attr("action", "myBooks");
+		$("#myBookForm").attr("method", "POST");
+		$("#myBookForm").submit();
+	});
+	
+	$("#btnSearchBook").click(function(e){
+		e.preventDefault();
+		if($("#search").val().trim() == null || $("#search").val().trim() == "") {
+			alert("Please enter search word!");
+			return;
+		}
+		
+		$("#formSearchBook").attr("action", "search");
+		$("#formSearchBook").attr("method", "GET");
+		$("#formSearchBook").submit();
 	});
 });
 
