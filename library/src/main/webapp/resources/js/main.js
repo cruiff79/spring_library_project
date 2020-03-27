@@ -62,6 +62,7 @@ $(document).ready(function() {
 		var user_id = $("#user_id").val();
 		if(user_id == null || user_id == '') {
 			alert("Please Sign in");
+			window.location.href="/library/sign_in";
 		} else {
 			$("#myBookForm").attr("action", "myBooks");
 			$("#myBookForm").attr("method", "POST");
