@@ -29,9 +29,9 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<Book> searchBook(String search) {
+	public List<Book> searchBook(String searchBook) {
 		// TODO Auto-generated method stub
-		return bookDAO.searchBook(search);
+		return bookDAO.searchBook(searchBook);
 	}
 
 	@Override

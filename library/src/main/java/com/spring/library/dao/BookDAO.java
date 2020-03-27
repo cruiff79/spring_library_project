@@ -9,7 +9,7 @@ import com.spring.library.vo.User;
 public interface BookDAO {
 	List<Book> listBook();
 	Book bookInfo(int book_id);
-	List<Book> searchBook(String search);
+	List<Book> searchBook(String searchBook);
 	void insertBook(Book book);
 	List<Category> allCategory();
 	void insertCategory(Category category);

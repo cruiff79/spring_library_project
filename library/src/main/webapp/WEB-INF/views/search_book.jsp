@@ -2,7 +2,12 @@
 		
 		<main role="main">
 			<div class="container main_container">
+				<div class="row searchingBook">Searching: ${searchBook}</div>
 				<div class="row">
+					<c:if test="${fn:length(list) == 0}">
+						<div class="col-sm-3">There is no book.</div>
+					</c:if>
+					<c:if test="${fn:length(list) > 0}">
 					<c:forEach var="item" items="${list}">
 						<div class="col-sm-3">
 							<div class="card">
@@ -14,6 +19,7 @@
 							</div>
 						</div>
 					</c:forEach>
+					</c:if>
 				</div>
 			</div>
 		</main>

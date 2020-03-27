@@ -81,3 +81,9 @@ body {
 .rental_info {
 	padding-bottom: 30px;
 }
+
+.searchingBook {
+	padding-bottom: 30px;
+	font-weight: bold;
+	font-size: 1.5em;
+}

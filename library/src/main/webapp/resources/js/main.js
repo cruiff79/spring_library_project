@@ -73,12 +73,12 @@ $(document).ready(function() {
 	
 	$("#btnSearchBook").click(function(e){
 		e.preventDefault();
-		if($("#search").val().trim() == null || $("#search").val().trim() == "") {
-			alert("Please enter search word!");
+		if($("#searchBook").val().trim() == null || $("#searchBook").val().trim() == "") {
+			alert("Please enter search book!");
 			return;
 		}
 		
-		$("#formSearchBook").attr("action", "search");
+		$("#formSearchBook").attr("action", "search_book");
 		$("#formSearchBook").attr("method", "GET");
 		$("#formSearchBook").submit();
 	});

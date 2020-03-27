@@ -205,14 +205,15 @@ public class HomeController {
 		return "update_user";
 	}
 	
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	@RequestMapping(value = "/search_book", method = RequestMethod.GET)
 	public String search_book(HttpServletRequest request, Model model) {
 		System.out.println("======== search_book method ===========");
-		String search = request.getParameter("search");
-		List<Book> searchList = bookService.searchBook(search);
+		String searchBook = request.getParameter("searchBook");
+		List<Book> searchList = bookService.searchBook(searchBook);
 		model.addAttribute("list", searchList);
+		model.addAttribute("searchBook", searchBook);
 		
-		return "search";
+		return "search_book";
 	}
 	
 	@RequestMapping(value = "/searchSubject", method = RequestMethod.GET)
