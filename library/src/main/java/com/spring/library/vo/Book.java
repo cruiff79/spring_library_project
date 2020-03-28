@@ -5,19 +5,20 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class Book {
 
-	int book_id;
-	String title;
-	String author;
-	String isbn;
-	String published_date;
-	String publisher;
-	int page;
-	String description;
-	String image;
-	int category_id;
-	String start_date;
-	String end_date;
-	String isBorrowed;
+	private int book_id;
+	private String title;
+	private String author;
+	private String isbn;
+	private String published_date;
+	private String publisher;
+	private int page;
+	private String description;
+	private String image;
+	private int category_id;
+	private String start_date;
+	private String end_date;
+	private String isBorrowed;
+	private int totCnt;
 	
 	public int getBook_id() {
 		return book_id;
@@ -96,5 +97,11 @@ public class Book {
 	}
 	public void setIsBorrowed(String isBorrowed) {
 		this.isBorrowed = isBorrowed;
+	}
+	public int getTotCnt() {
+		return totCnt;
+	}
+	public void setTotCnt(int totCnt) {
+		this.totCnt = totCnt;
 	}
 }

@@ -4,12 +4,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class User {
-	String user_id;
-	String password;
-	String name;
-	String address;
-	String post_code;
-	String phone;
+	private String user_id;
+	private String password;
+	private String name;
+	private String address;
+	private String post_code;
+	private String phone;
 	
 	public String getUser_id() {
 		return user_id;

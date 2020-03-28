@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.library.common.paging.Criteria;
 import com.spring.library.dao.BookDAO;
 import com.spring.library.vo.Book;
 import com.spring.library.vo.Category;
@@ -29,9 +30,9 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<Book> searchBook(String searchBook) {
+	public List<Book> searchBook(Criteria criteria) {
 		// TODO Auto-generated method stub
-		return bookDAO.searchBook(searchBook);
+		return bookDAO.searchBook(criteria);
 	}
 
 	@Override

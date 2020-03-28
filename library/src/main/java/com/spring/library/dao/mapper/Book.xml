@@ -23,9 +23,21 @@
 	</select>
 	
 	<!-- search book -->
-	<select id="searchBook" resultType="com.spring.library.vo.Book">
+	<select id="searchBook" parameterType="com.spring.library.common.paging.Criteria" resultType="com.spring.library.vo.Book">
 	<![CDATA[
-		SELECT * FROM BOOK WHERE UPPER(TITLE) LIKE '%' || UPPER(#{param1}) || '%'
+		SELECT *
+		    FROM (
+		        SELECT A.*
+		              ,ROWNUM AS RNUM
+		              ,COUNT(*) OVER() AS TOTCNT
+		            FROM (
+		                SELECT *
+		                    FROM BOOK
+		                    WHERE UPPER(TITLE) LIKE '%' || UPPER(#{searchBook}) || '%'
+		                ) A
+		    )
+		    WHERE RNUM > #{pageStart}
+		      AND RNUM <= #{pageEnd}
 	]]>
 	</select>
 	

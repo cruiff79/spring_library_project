@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.library.common.paging.Criteria;
+import com.spring.library.common.paging.PageMaker;
 import com.spring.library.service.BookService;
 import com.spring.library.vo.Book;
 import com.spring.library.vo.Category;
@@ -40,6 +42,12 @@ public class HomeController {
 	
 	@Autowired
 	User user;
+	
+	@Autowired
+	Criteria criteria;
+	
+	@Autowired
+	PageMaker pageMaker;
 	
 	String sessionID;
 	
@@ -208,10 +216,28 @@ public class HomeController {
 	@RequestMapping(value = "/search_book", method = RequestMethod.GET)
 	public String search_book(HttpServletRequest request, Model model) {
 		System.out.println("======== search_book method ===========");
+		
 		String searchBook = request.getParameter("searchBook");
-		List<Book> searchList = bookService.searchBook(searchBook);
+		String page = request.getParameter("page");
+		int pageNum = 1;
+		
+		if(page == null) {
+			pageNum = 1;
+		} else {
+			pageNum = Integer.parseInt(page);
+		}
+		
+		criteria.setPage(pageNum);
+		criteria.setPerPageNum(8);
+		criteria.setSearchBook(searchBook);
+		List<Book> searchList = bookService.searchBook(criteria);
+		
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(searchList.get(0).getTotCnt());
+		
 		model.addAttribute("list", searchList);
-		model.addAttribute("searchBook", searchBook);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("searchBook", criteria.getSearchBook());
 		
 		return "search_book";
 	}

@@ -21,6 +21,7 @@
 					</c:forEach>
 					</c:if>
 				</div>
+				<%@ include file = "pagination.jsp" %>
 			</div>
 		</main>
 

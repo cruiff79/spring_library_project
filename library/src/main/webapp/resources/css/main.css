@@ -87,3 +87,10 @@ body {
 	font-weight: bold;
 	font-size: 1.5em;
 }
+
+.paging {
+	padding-top: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

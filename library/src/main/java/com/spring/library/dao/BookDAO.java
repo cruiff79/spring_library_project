@@ -2,6 +2,7 @@ package com.spring.library.dao;
 
 import java.util.List;
 
+import com.spring.library.common.paging.Criteria;
 import com.spring.library.vo.Book;
 import com.spring.library.vo.Category;
 import com.spring.library.vo.User;
@@ -9,7 +10,7 @@ import com.spring.library.vo.User;
 public interface BookDAO {
 	List<Book> listBook();
 	Book bookInfo(int book_id);
-	List<Book> searchBook(String searchBook);
+	List<Book> searchBook(Criteria criteria);
 	void insertBook(Book book);
 	List<Category> allCategory();
 	void insertCategory(Category category);
