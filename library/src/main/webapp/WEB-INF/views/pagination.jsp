@@ -1,3 +1,4 @@
+<c:if test="${pageMaker.totalCount > 0}">
 <div>
 	<ul class="pagination paging">
 		<c:if test="${!pageMaker.prev}">
@@ -22,3 +23,4 @@
 		</c:if>
 	</ul>
 </div>
+</c:if>

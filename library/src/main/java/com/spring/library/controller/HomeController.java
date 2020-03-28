@@ -220,6 +220,7 @@ public class HomeController {
 		String searchBook = request.getParameter("searchBook");
 		String page = request.getParameter("page");
 		int pageNum = 1;
+		List<Book> searchList = null;
 		
 		if(page == null) {
 			pageNum = 1;
@@ -227,17 +228,25 @@ public class HomeController {
 			pageNum = Integer.parseInt(page);
 		}
 		
-		criteria.setPage(pageNum);
-		criteria.setPerPageNum(8);
-		criteria.setSearchBook(searchBook);
-		List<Book> searchList = bookService.searchBook(criteria);
-		
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(searchList.get(0).getTotCnt());
+		try {
+			criteria.setPage(pageNum);
+			criteria.setPerPageNum(8);
+			criteria.setSearchBook(searchBook);
+			searchList = bookService.searchBook(criteria);
+			pageMaker.setCriteria(criteria);
+			
+			if(searchList.isEmpty()) {
+				pageMaker.setTotalCount(0);
+			} else {
+				pageMaker.setTotalCount(searchList.get(0).getTotCnt());
+			}
+		} catch(IndexOutOfBoundsException e) {
+			e.getStackTrace();
+		}
 		
 		model.addAttribute("list", searchList);
 		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("searchBook", criteria.getSearchBook());
+		model.addAttribute("searchBook", searchBook);
 		
 		return "search_book";
 	}
