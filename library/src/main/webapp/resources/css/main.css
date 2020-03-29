@@ -94,3 +94,7 @@ body {
 	justify-content: center;
 	align-items: center;
 }
+
+.borrow {
+	background-color: blue;
+}

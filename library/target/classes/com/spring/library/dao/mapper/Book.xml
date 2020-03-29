@@ -15,8 +15,8 @@
 	<!-- detail book information -->
 	<select id="bookInfo" resultType="com.spring.library.vo.Book">
 		SELECT A.*,
-		        (CASE WHEN TO_DATE(B.END_DATE, 'YYYY-MM-DD') - SYSDATE >= 0 THEN 'YES'
-		        	ELSE 'NO' END) AS ISBORROWED
+		        (CASE WHEN TO_DATE(B.END_DATE, 'YYYY-MM-DD') - SYSDATE >= 0 THEN 1
+		        	ELSE 0 END) AS BORROWED
 		    FROM BOOK A, RENTAL B
 		    WHERE A.BOOK_ID = B.BOOK_ID(+)
 		      AND A.BOOK_ID = #{param1}
@@ -113,10 +113,19 @@
 	
 	<!-- myBook list -->
 	<select id="myBookList" resultType="com.spring.library.vo.Book">
-		SELECT A.START_DATE, A.END_DATE, B.BOOK_ID, B.TITLE, B.AUTHOR, B.PUBLISHER, B.IMAGE
+		SELECT A.START_DATE
+			  ,A.END_DATE
+			  ,(CASE WHEN TO_DATE(A.END_DATE, 'YYYY-MM-DD') - SYSDATE >= 0 THEN 1
+		        ELSE 0 END) AS BORROWED
+			  ,B.BOOK_ID
+			  ,B.TITLE
+			  ,B.AUTHOR
+			  ,B.PUBLISHER
+			  ,B.IMAGE
 		    FROM RENTAL A, BOOK B
 		    WHERE A.BOOK_ID = B.BOOK_ID
 		      AND A.USER_ID = #{param1}
+		    ORDER BY A.END_DATE DESC
 	</select>
 	
 </mapper>

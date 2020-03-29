@@ -17,7 +17,7 @@ public class Book {
 	private int category_id;
 	private String start_date;
 	private String end_date;
-	private String isBorrowed;
+	private int borrowed;
 	private int totCnt;
 	
 	public int getBook_id() {
@@ -92,11 +92,11 @@ public class Book {
 	public void setEnd_date(String end_date) {
 		this.end_date = end_date;
 	}
-	public String getIsBorrowed() {
-		return isBorrowed;
+	public int getBorrowed() {
+		return borrowed;
 	}
-	public void setIsBorrowed(String isBorrowed) {
-		this.isBorrowed = isBorrowed;
+	public void setIsBorrowed(int borrowed) {
+		this.borrowed = borrowed;
 	}
 	public int getTotCnt() {
 		return totCnt;

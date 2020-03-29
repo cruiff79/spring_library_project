@@ -23,11 +23,14 @@
 							<b>Release date</b>: ${bookInfo.published_date}
 						</div>
 						<div>
-							<b>Borrowed?</b>: ${bookInfo.isBorrowed}
+							<b>Borrowed</b>: <c:out value="${bookInfo.borrowed == 1 ? 'YES' : 'NO'}"/>
 						</div>
 						<div>
 							<h5>Description</h5>
 							<p>${bookInfo.description}</p>
+						</div>
+						<div>
+							<button id="btnBorrow" class="btn btn-lg btn-primary" <c:out value="${bookInfo.borrowed == 1 ? 'disabled' : ''}"/>>TAKE</button>
 						</div>
 					</div>
 				</div>
