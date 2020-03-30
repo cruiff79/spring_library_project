@@ -45,6 +45,9 @@ String user_type = (String)request.getSession().getAttribute("user_type");
 					</li>
 					<c:if test="${user_type == '1'}">
 					<li class="nav-item">
+						<a id="manageUser" class="nav-link" href="/library/manageUser">Manage User</a>
+					</li>
+					<li class="nav-item">
 						<a id="googleAPI" class="nav-link" href="/library/google_books_api">Google API</a>
 					</li>
 					</c:if>

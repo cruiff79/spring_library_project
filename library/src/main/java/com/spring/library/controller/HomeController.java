@@ -249,6 +249,7 @@ public class HomeController {
 		System.out.println("======== sign_out method ===========");
 		request.getSession().removeAttribute("user_id");
 		request.getSession().removeAttribute("user_name");
+		request.getSession().removeAttribute("user_type");
 		
 		return "sign_out";
 	}

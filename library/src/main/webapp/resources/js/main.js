@@ -101,8 +101,8 @@ $(document).ready(function() {
 // google api books
 $(document).ready(function() {
 	// get books information as JSON from google api
-    $("button").click(function(){
-        var search = $("#books").val();
+    $("#btnGoogleAPI").click(function(){
+        var search = $("#searchAPI").val();
 
         if(search == '') {
             alert("Please enter title");
