@@ -14,9 +14,11 @@
 	
 	<!-- detail book information -->
 	<select id="bookInfo" resultType="com.spring.library.vo.Book">
-		SELECT A.*,
-		        (CASE WHEN TO_DATE(B.END_DATE, 'YYYY-MM-DD') - SYSDATE >= 0 THEN 1
-		        	ELSE 0 END) AS BORROWED
+		SELECT A.*
+		      ,(CASE WHEN TO_DATE(B.END_DATE, 'YYYY-MM-DD') - SYSDATE >= 0 THEN 1
+		      	ELSE 0 END) AS BORROWED
+		      ,b.start_date
+              ,b.end_date
 		    FROM BOOK A, RENTAL B
 		    WHERE A.BOOK_ID = B.BOOK_ID(+)
 		      AND A.BOOK_ID = #{param1}

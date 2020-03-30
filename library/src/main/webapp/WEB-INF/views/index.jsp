@@ -4,7 +4,7 @@
 			<!-- Main jumbotron for a primary marketing message or call to action -->
 			<div class="jumbotron top_image">
 				<div class="container">
-					<h1 class="display-3">Beliveau Library</h1>
+					<h1 class="display-3">Public e-book Library</h1>
 				</div>
 			</div>
 			

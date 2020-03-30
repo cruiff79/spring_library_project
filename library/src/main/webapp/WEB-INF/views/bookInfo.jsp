@@ -24,6 +24,7 @@
 						</div>
 						<div>
 							<b>Borrowed</b>: <c:out value="${bookInfo.borrowed == 1 ? 'YES' : 'NO'}"/>
+							<c:if test="${bookInfo.borrowed == 1}">, ${bookInfo.start_date} ~ ${bookInfo.end_date}</c:if>
 						</div>
 						<div>
 							<h5>Description</h5>
