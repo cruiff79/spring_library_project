@@ -57,6 +57,4 @@ String user_name = (String)request.getSession().getAttribute("user_name");
 				</form>
 			</div>
 		</nav>
-		<form id="myBookForm">
-			<input type="hidden" id="user_id" name="user_id" value="${user_id}" />
-		</form>
+		<input type="hidden" id="user_id" name="user_id" value="${user_id}" />

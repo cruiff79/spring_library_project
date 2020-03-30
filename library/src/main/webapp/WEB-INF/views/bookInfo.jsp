@@ -34,6 +34,9 @@
 							<button id="btnBorrow" class="btn btn-lg btn-primary" <c:out value="${bookInfo.borrowed == 1 ? 'disabled' : ''}"/>>TAKE</button>
 						</div>
 					</div>
+					<form id="borrowForm">
+						<input type="hidden" name="book_id" value="${bookInfo.book_id}"/>
+					</form>
 				</div>
 			</div>
 		</main>

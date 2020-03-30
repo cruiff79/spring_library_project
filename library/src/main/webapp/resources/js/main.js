@@ -58,7 +58,6 @@ $(document).ready(function() {
 	});
 	
 	$("#myBooks").click(function(e) {
-		e.preventDefault();
 		var user_id = $("#user_id").val();
 		if(user_id == null || user_id == '') {
 			alert("Please Sign in");
@@ -66,9 +65,7 @@ $(document).ready(function() {
 			return;
 		}
 
-		$("#myBookForm").attr("action", "myBooks");
-		$("#myBookForm").attr("method", "POST");
-		$("#myBookForm").submit();
+		$("#myBooks").attr("href", "/library/myBooks");
 	});
 	
 	$("#btnSearchBook").click(function(e){
@@ -81,6 +78,16 @@ $(document).ready(function() {
 		$("#formSearchBook").attr("action", "search_book");
 		$("#formSearchBook").attr("method", "GET");
 		$("#formSearchBook").submit();
+	});
+	
+	$("#btnBorrow").click(function() {
+		if(confirm("Do you want to get this book?")) {
+			$("#borrowForm").attr("action", "borrow_book");
+			$("#borrowForm").attr("method", "GET");
+			$("#borrowForm").submit();
+		} else {
+			return false;
+		}
 	});
 });
 

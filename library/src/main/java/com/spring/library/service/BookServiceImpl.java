@@ -1,5 +1,6 @@
 package com.spring.library.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,15 +79,21 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public User user(User user) {
+	public User loginUser(User user) {
 		// TODO Auto-generated method stub
-		return bookDAO.user(user);
+		return bookDAO.loginUser(user);
 	}
 
 	@Override
 	public List<Book> myBookList(String user_id) {
 		// TODO Auto-generated method stub
 		return bookDAO.myBookList(user_id);
+	}
+
+	@Override
+	public void borrowBook(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		bookDAO.borrowBook(map);
 	}
 
 }

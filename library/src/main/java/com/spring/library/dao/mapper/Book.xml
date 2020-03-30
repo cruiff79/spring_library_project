@@ -8,7 +8,9 @@
 	<!-- list book on main page -->
 	<select id="listBook" resultType="com.spring.library.vo.Book">
 	<![CDATA[
-		SELECT * FROM BOOK WHERE ROWNUM <= 6
+		SELECT *
+			FROM BOOK
+			WHERE ROWNUM <= 6
 	]]>
 	</select>
 	
@@ -17,9 +19,20 @@
 		SELECT A.*
 		      ,(CASE WHEN TO_DATE(B.END_DATE, 'YYYY-MM-DD') - SYSDATE >= 0 THEN 1
 		      	ELSE 0 END) AS BORROWED
-		      ,b.start_date
-              ,b.end_date
-		    FROM BOOK A, RENTAL B
+		      ,B.START_DATE
+              ,B.END_DATE
+		    FROM BOOK A
+                ,(SELECT BOOK_ID
+                		,START_DATE
+                		,END_DATE
+                    FROM
+                        (SELECT BOOK_ID
+                        	   ,START_DATE
+                        	   ,END_DATE
+                            FROM RENTAL
+                            WHERE BOOK_ID = #{param1}
+                            ORDER BY END_DATE DESC)
+                    WHERE ROWNUM = 1) B
 		    WHERE A.BOOK_ID = B.BOOK_ID(+)
 		      AND A.BOOK_ID = #{param1}
 	</select>
@@ -45,7 +58,8 @@
 	
 	<!-- list all category -->
 	<select id="allCategory" resultType="com.spring.library.vo.Category">
-		SELECT * FROM CATEGORY
+		SELECT *
+			FROM CATEGORY
 	</select>
 	 
 	 <!-- insert book -->
@@ -53,11 +67,37 @@
 	<![CDATA[
 		INSERT INTO BOOK
 		(
-			BOOK_ID, TITLE, AUTHOR, ISBN, PUBLISHED_DATE, PUBLISHER, PAGE, DESCRIPTION, IMAGE, CATEGORY_ID, INSERT_ID, UPDATE_ID, INSERT_DATE, UPDATE_DATE
+			BOOK_ID
+		   ,TITLE
+		   ,AUTHOR
+		   ,ISBN
+		   ,PUBLISHED_DATE
+		   ,PUBLISHER
+		   ,PAGE
+		   ,DESCRIPTION
+		   ,IMAGE
+		   ,CATEGORY_ID
+		   ,INSERT_ID
+		   ,UPDATE_ID
+		   ,INSERT_DATE
+		   ,UPDATE_DATE
 		)
 		VALUES
 		(
-			BOOK_SEQ.NEXTVAL, #{title}, #{author}, #{isbn}, #{published_date}, #{publisher}, #{page}, #{description}, #{image}, #{category_id}, 'admin', 'admin', sysdate, sysdate
+			BOOK_SEQ.NEXTVAL
+		   ,#{title}
+		   ,#{author}
+		   ,#{isbn}
+		   ,#{published_date}
+		   ,#{publisher}
+		   ,#{page}
+		   ,#{description}
+		   ,#{image}
+		   ,#{category_id}
+		   ,'admin'
+		   ,'admin'
+		   ,SYSDATE
+		   ,SYSDATE
 		)
 	]]>
 	</insert>
@@ -67,49 +107,71 @@
 	<![CDATA[
 		INSERT INTO CATEGORY
 		(
-			CATEGORY_ID, CATEGORY_NAME
+			CATEGORY_ID
+		   ,CATEGORY_NAME
 		)
 		VALUES
 		(
-			CATEGORY_SEQ.NEXTVAL, #{category_name}
+			CATEGORY_SEQ.NEXTVAL
+		   ,#{category_name}
 		)
 	]]>
 	</insert>
 	
 	<!-- search category -->
 	<select id="searchCategory" resultType="com.spring.library.vo.Category">
-		SELECT * FROM CATEGORY WHERE CATEGORY_NAME = #{category_name}
+		SELECT *
+			FROM CATEGORY
+			WHERE CATEGORY_NAME = #{category_name}
 	</select>
 	
 	<!-- list book of category -->
 	<select id="bookCategory" resultType="com.spring.library.vo.Book">
-		SELECT BOOK_ID, TITLE, AUTHOR, IMAGE, CATEGORY_ID FROM BOOK WHERE CATEGORY_ID = #{param1}
+		SELECT BOOK_ID
+			  ,TITLE
+			  ,AUTHOR
+			  ,IMAGE
+			  ,CATEGORY_ID
+			FROM BOOK
+			WHERE CATEGORY_ID = #{param1}
 	</select>
 	
 	<!-- sign up -->
 	<insert id="createUser" parameterType="com.spring.library.vo.User">
 		INSERT INTO MEMBER
 		(
-			USER_ID, PASSWORD, NAME, ADDRESS, POST_CODE, PHONE
+			USER_ID
+		   ,PASSWORD
+		   ,NAME
+		   ,ADDRESS
+		   ,POST_CODE
+		   ,PHONE
 		)
 		VALUES
 		(
-			#{user_id}, #{password}, #{name}, #{address}, #{post_code}, #{phone}
+			#{user_id}
+		   ,#{password}
+		   ,#{name}
+		   ,#{address}
+		   ,#{post_code}
+		   ,#{phone}
 		)
 	</insert>
 	
 	<!-- sign in -->
-	<select id="user" resultType="com.spring.library.vo.User">
-		SELECT * FROM MEMBER WHERE USER_ID = #{user_id}
+	<select id="loginUser" resultType="com.spring.library.vo.User">
+		SELECT *
+			FROM MEMBER
+			WHERE USER_ID = #{user_id}
 	</select>
 	
 	<update id="updateUser" parameterType="com.spring.library.vo.User">
 		UPDATE MEMBER
-			SET PASSWORD = #{password},
-				NAME = #{name},
-				ADDRESS = #{address},
-				POST_CODE = #{post_code},
-				PHONE = #{phone}
+			SET PASSWORD = #{password}
+			   ,NAME = #{name}
+			   ,ADDRESS = #{address}
+			   ,POST_CODE = #{post_code}
+			   ,PHONE = #{phone}
 			WHERE USER_ID = #{user_id}
 	</update>
 	
@@ -127,7 +189,31 @@
 		    FROM RENTAL A, BOOK B
 		    WHERE A.BOOK_ID = B.BOOK_ID
 		      AND A.USER_ID = #{param1}
-		    ORDER BY A.END_DATE DESC
+		    ORDER BY A.UPDATE_DATE DESC
 	</select>
+	
+	<!-- borrow book -->
+	<insert id="borrowBook" parameterType="java.util.HashMap">
+		INSERT INTO RENTAL
+		(
+			RENTAL_ID
+		   ,BOOK_ID
+		   ,USER_ID
+		   ,START_DATE
+		   ,END_DATE
+		   ,INSERT_DATE
+		   ,UPDATE_DATE
+		)
+		VALUES
+		(
+			RENTAL_SEQ.NEXTVAL
+		   ,#{book_id}
+		   ,#{user_id}
+		   ,TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		   ,TO_CHAR(SYSDATE+14, 'YYYY-MM-DD')
+		   ,TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS')
+		   ,TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS')
+		)
+	</insert>
 	
 </mapper>

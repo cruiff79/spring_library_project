@@ -49,8 +49,6 @@ public class HomeController {
 	@Autowired
 	PageMaker pageMaker;
 	
-	String sessionID;
-	
 	/**
 	 * index page
 	 */
@@ -63,7 +61,14 @@ public class HomeController {
 		return "index";
 	}
 	
-	// book info
+	
+	/**
+	 * @Method Name : book_info
+	 * @Description : show book information
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/bookInfo", method = RequestMethod.GET)
 	public String book_info(HttpServletRequest request, Model model) {
 		System.out.println("======== book_info ===========");
@@ -74,6 +79,12 @@ public class HomeController {
 		return "bookInfo";
 	}
 	
+	/**
+	 * @Method Name : book_list
+	 * @Description : list books page
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public String book_list(Model model) {
 		System.out.println("======== book_list ===========");
@@ -81,6 +92,12 @@ public class HomeController {
 		return "books";
 	}
 	
+	/**
+	 * @Method Name : subject_list
+	 * @Description : list all subjects
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/subjects", method = RequestMethod.GET)
 	public String subject_list(Model model) {
 		System.out.println("======== subject_list method ===========");
@@ -90,16 +107,50 @@ public class HomeController {
 		return "subjects";
 	}
 	
-	@RequestMapping(value = "/myBooks", method = RequestMethod.POST)
+	/**
+	 * @Method Name : myBook_list
+	 * @Description : list my borrowed books
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/myBooks", method = RequestMethod.GET)
 	public String myBook_list(HttpServletRequest request, Model model) {
 		System.out.println("======== myBook_list method ===========");
-		String user_id = request.getParameter("user_id");
+		String user_id = request.getSession().getAttribute("user_id").toString();
 		List<Book> myBookList = bookService.myBookList(user_id);
 		model.addAttribute("list", myBookList);
 		
 		return "myBooks";
 	}
 	
+	/**
+	 * @Method Name : borrow_book
+	 * @Description : process borrowing book
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/borrow_book", method = RequestMethod.GET)
+	public String borrow_book(HttpServletRequest request) {
+		System.out.println("======== borrow_book method ===========");
+		String user_id = request.getSession().getAttribute("user_id").toString();
+		int book_id = Integer.parseInt(request.getParameter("book_id"));
+		
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		map.put("user_id", user_id);
+		map.put("book_id", book_id);
+		
+		bookService.borrowBook(map);
+		
+		return "redirect:myBooks";
+	}
+	
+	/**
+	 * @Method Name : sign_in
+	 * @Description : log in page
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/sign_in", method = RequestMethod.GET)
 	public String sign_in(Model model) {
 		System.out.println("======== sign_in method ===========");
@@ -107,6 +158,13 @@ public class HomeController {
 		return "sign_in";
 	}
 	
+	/**
+	 * @Method Name : sign_in_process
+	 * @Description : process log in
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/sign_in_process", method = RequestMethod.POST)
 	public String sign_in_process(HttpServletRequest request, Model model) {
 		System.out.println("======== sign_in_process method ===========");
@@ -117,7 +175,7 @@ public class HomeController {
 		user.setUser_id(email);
 		user.setPassword(password);
 		
-		User loginUser = bookService.user(user);
+		User loginUser = bookService.loginUser(user);
 		
 		// login and password decrypt
 		if(loginUser != null && BCrypt.checkpw(password, loginUser.getPassword())) {
@@ -134,6 +192,26 @@ public class HomeController {
 		return url;
 	}
 	
+	/**
+	 * @Method Name : sign_up
+	 * @Description : user register page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/sign_up", method = RequestMethod.GET)
+	public String sign_up(Model model) {
+		System.out.println("======== sign_up method ===========");
+		
+		return "sign_up";
+	}
+	
+	/**
+	 * @Method Name : sign_up_insert
+	 * @Description : process user register
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/sign_up_insert", method = RequestMethod.POST)
 	public String sign_up_insert(HttpServletRequest request, Model model) {
 		System.out.println("======== sign_up_insert method ===========");
@@ -158,13 +236,13 @@ public class HomeController {
 		return "redirect:sign_in";
 	}
 	
-	@RequestMapping(value = "/sign_up", method = RequestMethod.GET)
-	public String sign_up(Model model) {
-		System.out.println("======== sign_up method ===========");
-		
-		return "sign_up";
-	}
-	
+	/**
+	 * @Method Name : sign_out
+	 * @Description : process log out
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/sign_out", method = RequestMethod.GET)
 	public String sign_out(HttpServletRequest request) throws Exception {
 		System.out.println("======== sign_out method ===========");
@@ -174,18 +252,32 @@ public class HomeController {
 		return "sign_out";
 	}
 	
+	/**
+	 * @Method Name : update_user
+	 * @Description : update user page
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/update_user", method = RequestMethod.GET)
 	public String update_user(HttpServletRequest request, Model model) {
 		System.out.println("======== update_user method ===========");
 		String email = request.getSession().getAttribute("user_id").toString();
 		user.setUser_id(email);
 		
-		User loginUser = bookService.user(user);
+		User loginUser = bookService.loginUser(user);
 		model.addAttribute("user", loginUser);
 		
 		return "update_user";
 	}
 	
+	/**
+	 * @Method Name : update_user_process
+	 * @Description : process update user
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/update_user_process", method = RequestMethod.POST)
 	public String update_user_process(HttpServletRequest request, Model model) {
 		System.out.println("======== update_user_process method ===========");
@@ -213,6 +305,13 @@ public class HomeController {
 		return "update_user";
 	}
 	
+	/**
+	 * @Method Name : search_book
+	 * @Description : process search books
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/search_book", method = RequestMethod.GET)
 	public String search_book(HttpServletRequest request, Model model) {
 		System.out.println("======== search_book method ===========");
@@ -251,6 +350,13 @@ public class HomeController {
 		return "search_book";
 	}
 	
+	/**
+	 * @Method Name : book_category
+	 * @Description : list books selected category
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/searchSubject", method = RequestMethod.GET)
 	public String book_category(HttpServletRequest request, Model model) {
 		System.out.println("======== book_category method ===========");
@@ -263,6 +369,12 @@ public class HomeController {
 		return "book_category";
 	}
 	
+	/**
+	 * @Method Name : google_books_api
+	 * @Description : google books api page
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/google_books_api", method = RequestMethod.GET)
 	public String google_books_api(Model model) {
 		System.out.println("======== google_books_api method ===========");
@@ -270,6 +382,13 @@ public class HomeController {
 		return "google_books_api";
 	}
 	
+	/**
+	 * @Method Name : google_books_api_insert
+	 * @Description : get books information from google api and insert them into database
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/google_books_api_insert", method = RequestMethod.POST)
 	public String google_books_api_insert(HttpServletRequest request, Model model) {
 		System.out.println("======== google_books_api_insert method ===========");
