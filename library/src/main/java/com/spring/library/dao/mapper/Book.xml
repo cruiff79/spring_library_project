@@ -146,6 +146,7 @@
 		   ,ADDRESS
 		   ,POST_CODE
 		   ,PHONE
+		   ,USER_TYPE
 		)
 		VALUES
 		(
@@ -155,6 +156,7 @@
 		   ,#{address}
 		   ,#{post_code}
 		   ,#{phone}
+		   ,'2'
 		)
 	</insert>
 	

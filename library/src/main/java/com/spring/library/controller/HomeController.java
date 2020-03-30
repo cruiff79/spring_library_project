@@ -181,6 +181,7 @@ public class HomeController {
 		if(loginUser != null && BCrypt.checkpw(password, loginUser.getPassword())) {
 			request.getSession().setAttribute("user_id", loginUser.getUser_id());
 			request.getSession().setAttribute("user_name", loginUser.getName());
+			request.getSession().setAttribute("user_type", loginUser.getUser_type());
 			model.addAttribute("user", loginUser);
 			
 			url = "redirect:/";

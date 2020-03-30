@@ -10,6 +10,7 @@ public class User {
 	private String address;
 	private String post_code;
 	private String phone;
+	private String user_type;
 	
 	public String getUser_id() {
 		return user_id;
@@ -46,5 +47,11 @@ public class User {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public String getUser_type() {
+		return user_type;
+	}
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
 	}
 }

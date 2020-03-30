@@ -6,6 +6,7 @@
 <% 
 String user_id = (String)request.getSession().getAttribute("user_id");
 String user_name = (String)request.getSession().getAttribute("user_name");
+String user_type = (String)request.getSession().getAttribute("user_type");
 %>
 
 <!doctype html>
@@ -42,6 +43,11 @@ String user_name = (String)request.getSession().getAttribute("user_name");
 					<li class="nav-item">
 						<a id="myBooks" class="nav-link" href="">MyBooks</a>
 					</li>
+					<c:if test="${user_type == '1'}">
+					<li class="nav-item">
+						<a id="googleAPI" class="nav-link" href="/library/google_books_api">Google API</a>
+					</li>
+					</c:if>
 				</ul>
 				<div class="navbar-nav">
 					<c:if test="${user_id != null}"><div class="nav-item"><a class="nav-link" href="/library/update_user">${user_name}</a></div></c:if>
