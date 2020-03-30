@@ -1,8 +1,10 @@
 $(document).ready(function() {
+	// sign in
 	$("#sign_in").click(function(){
 		$("#signInForm").submit();
 	});
 	
+	// sign up
 	$("#sign_up").click(function() {
 		if($("#email").val() == null || $("#email").val() == '') {
 			alert('please insert email');
@@ -30,6 +32,7 @@ $(document).ready(function() {
 		}
 	});
 	
+	// update user
 	$("#update_user").click(function() {
 		if($("#email").val() == null || $("#email").val() == '') {
 			alert('please insert email');
@@ -57,17 +60,20 @@ $(document).ready(function() {
 		}
 	});
 	
+	// myBooks list
 	$("#myBooks").click(function(e) {
 		var user_id = $("#user_id").val();
 		if(user_id == null || user_id == '') {
+			e.preventDefault();
 			alert("Please Sign in");
-			window.location.href="/library/sign_in";
+			$(location).attr("href", "/library/sign_in");
 			return;
 		}
 
 		$("#myBooks").attr("href", "/library/myBooks");
 	});
 	
+	// search books
 	$("#btnSearchBook").click(function(e){
 		e.preventDefault();
 		if($("#searchBook").val().trim() == null || $("#searchBook").val().trim() == "") {
@@ -80,6 +86,7 @@ $(document).ready(function() {
 		$("#formSearchBook").submit();
 	});
 	
+	// borrow books
 	$("#btnBorrow").click(function() {
 		if(confirm("Do you want to get this book?")) {
 			$("#borrowForm").attr("action", "borrow_book");
@@ -91,7 +98,9 @@ $(document).ready(function() {
 	});
 });
 
+// google api books
 $(document).ready(function() {
+	// get books information as JSON from google api
     $("button").click(function(){
         var search = $("#books").val();
 
@@ -131,6 +140,7 @@ $(document).ready(function() {
     return false;
 });
 
+// save book information
 function madeAjaxCall(_title, _author, _publisher, _publishedDate, _description, _page, _isbn, _img, _categories) {
     $.ajax({
         type: "POST",
