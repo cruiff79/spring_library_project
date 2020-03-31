@@ -378,10 +378,17 @@ public class HomeController {
 	 * @return
 	 */
 	@RequestMapping(value = "/google_books_api", method = RequestMethod.GET)
-	public String google_books_api(Model model) {
+	public String google_books_api(HttpServletRequest request) {
 		System.out.println("======== google_books_api method ===========");
+		try {
+			if(request.getSession().getAttribute("user_type").equals("1")) {
+				return "google_books_api";
+			}
+		} catch(NullPointerException e) {
+			e.printStackTrace();
+		}
 		
-		return "google_books_api";
+		return "redirect:/";
 	}
 	
 	/**
@@ -391,9 +398,13 @@ public class HomeController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/google_books_api_insert", method = RequestMethod.POST)
-	public String google_books_api_insert(HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/google_books_api_insert", method = {RequestMethod.POST, RequestMethod.GET})
+	public String google_books_api_insert(HttpServletRequest request) {
 		System.out.println("======== google_books_api_insert method ===========");
+		
+		if(request.getMethod().equals("GET")) {
+			return "redirect:/";
+		}
 		
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
