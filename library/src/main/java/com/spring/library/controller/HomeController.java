@@ -373,6 +373,15 @@ public class HomeController {
 		return "book_category";
 	}
 	
+	@RequestMapping(value = "/all_user", method = RequestMethod.GET)
+	public String list_all_user(Model model) {
+		System.out.println("======== list_all_user method ===========");
+		List<User> allUser = bookService.list_all_user();
+		model.addAttribute("allUser", allUser);
+		
+		return "all_user";
+	}
+	
 	/**
 	 * @Method Name : google_books_api
 	 * @Description : google books api page

@@ -11,6 +11,7 @@ public class User {
 	private String post_code;
 	private String phone;
 	private String user_type;
+	private String type_name;
 	
 	public String getUser_id() {
 		return user_id;
@@ -53,5 +54,11 @@ public class User {
 	}
 	public void setUser_type(String user_type) {
 		this.user_type = user_type;
+	}
+	public String getType_name() {
+		return type_name;
+	}
+	public void setType_name(String type_name) {
+		this.type_name = type_name;
 	}
 }

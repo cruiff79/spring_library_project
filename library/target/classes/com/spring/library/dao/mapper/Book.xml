@@ -242,4 +242,13 @@
 		)
 	</insert>
 	
+	<select id="list_all_user" resultType="com.spring.library.vo.User">
+		SELECT A.*
+		      ,B.TYPE_NAME
+		    FROM MEMBER A,
+		         USERTYPE B
+		    WHERE A.USER_TYPE = B.TYPE_ID
+		    ORDER BY A.NAME
+	</select>
+	
 </mapper>

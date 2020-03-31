@@ -102,4 +102,10 @@ public class BookServiceImpl implements BookService {
 		bookDAO.borrowBook(map);
 	}
 
+	@Override
+	public List<User> list_all_user() {
+		// TODO Auto-generated method stub
+		return bookDAO.list_all_user();
+	}
+
 }

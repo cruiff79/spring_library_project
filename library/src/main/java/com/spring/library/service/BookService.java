@@ -113,4 +113,12 @@ public interface BookService {
 	 * @param map
 	 */
 	void borrowBook(HashMap<Object, Object> map);
+	
+	
+	/**
+	 * @Method Name : list_all_user
+	 * @Description : list all user
+	 * @return
+	 */
+	List<User> list_all_user();
 }
