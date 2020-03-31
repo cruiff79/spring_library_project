@@ -19,9 +19,15 @@ public class BookServiceImpl implements BookService {
 	BookDAO bookDAO;
 
 	@Override
-	public List<Book> listBook() {
+	public List<Book> listBestBook() {
 		// TODO Auto-generated method stub
-		return bookDAO.listBook();
+		return bookDAO.listBestBook();
+	}
+	
+	@Override
+	public List<Book> listNewBook() {
+		// TODO Auto-generated method stub
+		return bookDAO.listNewBook();
 	}
 
 	@Override

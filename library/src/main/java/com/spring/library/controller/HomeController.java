@@ -55,8 +55,10 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		System.out.println("======== index ===========");
-		List<Book> bookList = bookService.listBook();
-		model.addAttribute("list", bookList);
+		List<Book> listBestBook = bookService.listBestBook();
+		List<Book> listNewBook = bookService.listNewBook();
+		model.addAttribute("listBestBook", listBestBook);
+		model.addAttribute("listNewBook", listNewBook);
 		
 		return "index";
 	}

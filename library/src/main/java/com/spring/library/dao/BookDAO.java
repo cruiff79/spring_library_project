@@ -10,11 +10,18 @@ import com.spring.library.vo.User;
 
 public interface BookDAO {
 	/**
-	 * @Method Name : listBook
-	 * @Description : list books in index page
+	 * @Method Name : listBestBook
+	 * @Description : list best books in index page
 	 * @return
 	 */
-	List<Book> listBook();
+	List<Book> listBestBook();
+	
+	/**
+	 * @Method Name : listNewBook
+	 * @Description : list new books
+	 * @return
+	 */
+	List<Book> listNewBook();
 	
 	/**
 	 * @Method Name : bookInfo

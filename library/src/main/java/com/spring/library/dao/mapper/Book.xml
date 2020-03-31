@@ -6,11 +6,35 @@
 <mapper namespace="com.spring.library.dao.BookDAO">
 
 	<!-- list book on main page -->
-	<select id="listBook" resultType="com.spring.library.vo.Book">
+	<select id="listBestBook" resultType="com.spring.library.vo.Book">
+	<![CDATA[
+		SELECT A.*
+		    FROM BOOK A,
+		        (
+		        SELECT BOOK_ID
+		            FROM (
+		                SELECT BOOK_ID
+		                      ,COUNT(*) CNT
+		                    FROM RENTAL
+		                    GROUP BY BOOK_ID
+		                    ORDER BY CNT DESC
+		                 )
+		            WHERE ROWNUM <= 6
+		        ) B
+		    WHERE A.BOOK_ID = B.BOOK_ID
+	]]>
+	</select>
+	
+	<!-- list new book on main page -->
+	<select id="listNewBook" resultType="com.spring.library.vo.Book">
 	<![CDATA[
 		SELECT *
-			FROM BOOK
-			WHERE ROWNUM <= 6
+		    FROM (
+		        SELECT *
+		            FROM BOOK
+		            ORDER BY INSERT_DATE DESC
+		         )
+		    WHERE ROWNUM <= 6
 	]]>
 	</select>
 	

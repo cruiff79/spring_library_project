@@ -10,10 +10,10 @@
 			
 			<div class="container index_main_container">
 				<div class="row">
-					<h3>Just add</h3>
+					<h3>BestSeller</h3>
 				</div>
 				<div class="card-deck">
-					<c:forEach var="item" items="${list}">
+					<c:forEach var="item" items="${listBestBook}">
 		                <div class="card text-center">
 		                    <div class="card-block">
 		                    	<a href="bookInfo?book_id=${item.book_id}"><img src="${item.image}" alt="" class="card-img-top" /></a>
@@ -26,10 +26,10 @@
 			</div>
 			<div class="container index_main_container">
 				<div class="row">
-					<h3>Your next great read</h3>
+					<h3>New great read</h3>
 				</div>
 				<div class="card-deck">
-					<c:forEach var="item" items="${list}">
+					<c:forEach var="item" items="${listNewBook}">
 		                <div class="card text-center">
 		                    <div class="card-block">
 		                    	<a href="bookInfo?book_id=${item.book_id}"><img src="${item.image}" alt="" class="card-img-top" /></a>
