@@ -251,4 +251,29 @@
 		    ORDER BY A.NAME
 	</select>
 	
+	<select id="userInfo" resultType="com.spring.library.vo.User">
+		SELECT A.*
+		      ,B.TYPE_NAME
+		    FROM MEMBER A,
+		         USERTYPE B
+		    WHERE A.USER_TYPE = B.TYPE_ID
+              AND A.USER_ID = #{param1}
+	</select>
+	
+	<select id="userType" resultType="com.spring.library.vo.UserType">
+		SELECT *
+		    FROM USERTYPE
+		    ORDER BY TYPE_ID
+	</select>
+	
+	<update id="updateUserAdmin" parameterType="com.spring.library.vo.User">
+		UPDATE MEMBER
+			SET NAME = #{name}
+			   ,ADDRESS = #{address}
+			   ,POST_CODE = #{post_code}
+			   ,PHONE = #{phone}
+			   ,USER_TYPE = #{user_type}
+			WHERE USER_ID = #{user_id}
+	</update>
+	
 </mapper>

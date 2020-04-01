@@ -11,6 +11,7 @@ import com.spring.library.dao.BookDAO;
 import com.spring.library.vo.Book;
 import com.spring.library.vo.Category;
 import com.spring.library.vo.User;
+import com.spring.library.vo.UserType;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -106,6 +107,24 @@ public class BookServiceImpl implements BookService {
 	public List<User> list_all_user() {
 		// TODO Auto-generated method stub
 		return bookDAO.list_all_user();
+	}
+
+	@Override
+	public User userInfo(String user_id) {
+		// TODO Auto-generated method stub
+		return bookDAO.userInfo(user_id);
+	}
+
+	@Override
+	public List<UserType> userType() {
+		// TODO Auto-generated method stub
+		return bookDAO.userType();
+	}
+
+	@Override
+	public void updateUserAdmin(User user) {
+		// TODO Auto-generated method stub
+		bookDAO.updateUserAdmin(user);
 	}
 
 }

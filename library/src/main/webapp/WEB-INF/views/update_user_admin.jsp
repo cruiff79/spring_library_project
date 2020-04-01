@@ -1,0 +1,62 @@
+		<%@ include file = "header.jsp" %>
+		
+		<main role="main">
+		    <div class="cotainer sign_in">
+		        <div class="row justify-content-center">
+		            <div class="col-md-8">
+	                    <div class="card">
+	                        <div class="card-header">UPDATE USER INFORMATION</div>
+	                        <div class="card-body">
+	                            <form id="form_userInfo_admin" name="form_userInfo_admin">
+	                                <div class="form-group row">
+	                                    <label for="email" class="col-md-4 col-form-label text-md-right">E-MAIL</label>
+	                                    <div class="col-md-6">
+	                                        <input type="email" id="email" class="form-control" name="email" value="${user.user_id}" readonly/>
+	                                    </div>
+	                                </div>
+	                                <div class="form-group row">
+	                                    <label for="user_name" class="col-md-4 col-form-label text-md-right">USER NAME</label>
+	                                    <div class="col-md-6">
+	                                        <input type="text" id="user_name" class="form-control" name="user_name" value="${user.name}"/>
+	                                    </div>
+	                                </div>           
+	                                <div class="form-group row">
+	                                    <label for="address" class="col-md-4 col-form-label text-md-right">ADDRESS</label>
+	                                    <div class="col-md-6">
+	                                        <input type="text" id="address" class="form-control" name="address" value="${user.address}"/>
+	                                    </div>
+	                                </div>              
+	                                <div class="form-group row">
+	                                    <label for="post_code" class="col-md-4 col-form-label text-md-right">POST CODE</label>
+	                                    <div class="col-md-6">
+	                                        <input type="text" id="post_code" class="form-control" name="post_code" value="${user.post_code}"/>
+	                                    </div>
+	                                </div>
+	                                <div class="form-group row">
+	                                    <label for="phone_number" class="col-md-4 col-form-label text-md-right">PHONE NUMBER</label>
+	                                    <div class="col-md-6">
+	                                        <input type="text" id="phone_number" class="form-control" name="phone_number" value="${user.phone}"/>
+	                                    </div>
+	                                </div>
+	                                <div class="form-group row">
+	                                    <label for="user_type" class="col-md-4 col-form-label text-md-right">USER TYPE</label>
+	                                    <div class="col-md-6">
+											<select class="custom-select mr-sm-2" id="user_type" name="user_type">
+											<c:forEach var="item" items="${userType}">
+												<option value="${item.type_id}" <c:out value="${user.user_type == item.type_id ? 'selected' : ''}"/>>${item.type_name}</option>
+											</c:forEach>
+											</select>
+	                                    </div>
+	                                </div>
+                                    <div class="col-md-6 offset-md-4">
+                                        <button id="btn_userInfo_admin" class="btn btn-primary">Update</button>
+                                    </div>
+	                            </form>
+	                        </div>
+	                    </div>
+		            </div>
+		        </div>
+		    </div>
+		</main>
+
+		<%@ include file ="footer.jsp" %>

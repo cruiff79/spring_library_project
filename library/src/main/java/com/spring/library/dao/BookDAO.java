@@ -7,6 +7,7 @@ import com.spring.library.common.paging.Criteria;
 import com.spring.library.vo.Book;
 import com.spring.library.vo.Category;
 import com.spring.library.vo.User;
+import com.spring.library.vo.UserType;
 
 public interface BookDAO {
 	/**
@@ -120,4 +121,26 @@ public interface BookDAO {
 	 * @return
 	 */
 	List<User> list_all_user();
+	
+	/**
+	 * @Method Name : userInfo
+	 * @Description : show user information
+	 * @param user_id
+	 * @return
+	 */
+	User userInfo(String user_id);
+	
+	/**
+	 * @Method Name : allUserType
+	 * @Description : list all user type
+	 * @return
+	 */
+	List<UserType> userType();
+	
+	/**
+	 * @Method Name : updateUserAdmin
+	 * @Description : update user info as admin
+	 * @param user
+	 */
+	void updateUserAdmin(User user);
 }

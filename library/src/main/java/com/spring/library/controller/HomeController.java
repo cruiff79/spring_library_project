@@ -22,6 +22,7 @@ import com.spring.library.service.BookService;
 import com.spring.library.vo.Book;
 import com.spring.library.vo.Category;
 import com.spring.library.vo.User;
+import com.spring.library.vo.UserType;
 
 /**
  * Handles requests for the application home page.
@@ -42,6 +43,9 @@ public class HomeController {
 	
 	@Autowired
 	User user;
+	
+	@Autowired
+	UserType userType;
 	
 	@Autowired
 	Criteria criteria;
@@ -380,6 +384,38 @@ public class HomeController {
 		model.addAttribute("allUser", allUser);
 		
 		return "all_user";
+	}
+	
+	@RequestMapping(value = "/userInfo", method = RequestMethod.GET)
+	public String userInfo(HttpServletRequest request, Model model) {
+		System.out.println("======== userInfo method ===========");
+		String user_id = request.getParameter("user_id");
+		User userInfo = bookService.userInfo(user_id);
+		List<UserType> userType = bookService.userType();
+		model.addAttribute("user", userInfo);
+		model.addAttribute("userType", userType);
+		
+		return "update_user_admin";
+	}
+	
+	/**
+	 * @Method Name : update_user_admin_process
+	 * @Description : update user info as admin
+	 * @return
+	 */
+	@RequestMapping(value = "/update_user_admin_process", method = RequestMethod.POST)
+	public String update_user_admin_process(HttpServletRequest request) {
+		System.out.println("======== update_user_admin_process method ===========");
+		
+		user.setUser_id(request.getParameter("email"));
+		user.setName(request.getParameter("user_name"));
+		user.setAddress(request.getParameter("address"));
+		user.setPost_code(request.getParameter("post_code"));
+		user.setPhone(request.getParameter("phone_number"));
+		user.setUser_type(request.getParameter("user_type"));
+		bookService.updateUserAdmin(user);
+		
+		return "redirect:all_user";
 	}
 	
 	/**

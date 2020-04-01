@@ -96,6 +96,12 @@ $(document).ready(function() {
 			return false;
 		}
 	});
+	
+	$("#btn_userInfo_admin").click(function() {
+		$("#form_userInfo_admin").attr("action", "update_user_admin_process");
+		$("#form_userInfo_admin").attr("method", "POST");
+		$("#form_userInfo_admin").submit();
+	});
 });
 
 // google api books
